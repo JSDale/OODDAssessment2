@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ticket-gate.iml" filepath="$PROJECT_DIR$/ticket-gate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model/ticket-gate-model.iml" filepath="$PROJECT_DIR$/model/ticket-gate-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/ticket-gate-service.iml" filepath="$PROJECT_DIR$/service/ticket-gate-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/ticket-gate-web.iml" filepath="$PROJECT_DIR$/web/ticket-gate-web.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,62 @@
+{
+    "info": {
+        "name": "RESTer",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "COM504TCA-2020-2021",
+            "item": [
+                {
+                    "request": {
+                        "url": "http://localhost:8080/ticketgate/rest/gatelock/createTicket/?zones=1&startStation=Waterloo&validFrom=01-01-2020 00:00:00&validTo=01-01-2021 00:00:00",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/xml"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/x-www-form-urlencoded"
+                            }
+                        ]
+                    },
+                    "id": "rester-2",
+                    "name": "Create Ticket"
+                },
+                {
+                    "request": {
+                        "url": "http://localhost:8080/ticketgate/rest/gatelock/openGate/1/",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application/xml"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application/xml"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "    <ticket>\n        <zones>1</zones>\n        <startStation>Waterloo</startStation>\n        <encodedKey>BDF+FbuOrfvy39xdCwmoHLqfG8uzHaWnkVahP103DlxL6CQUZ1ulraoHvjX40o9gOeVH6pxMq9ebGOHEBWwGjI3GXoI+a8DThto8Kl2005lB5QgcZg75M/feQ7JYwWBHi1U0sR1k7N9eG+/wdRoT+xaQg6VQBO9yCYYEvE1veCw=</encodedKey>\n        <validFrom>01-01-2020 00:00:00</validFrom>\n        <validTo>01-01-2021 00:00:00</validTo>\n    </ticket>"
+                        }
+                    },
+                    "id": "rester-3",
+                    "name": "Open Gate"
+                },
+                {
+                    "request": {
+                        "url": "http://localhost:8080/ticketgate/rest/gatelock",
+                        "method": "GET",
+                        "header": []
+                    },
+                    "id": "rester-1",
+                    "name": "Test Interface Active"
+                }
+            ]
+        }
+    ]
+}

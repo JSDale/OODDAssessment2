@@ -1,0 +1,6 @@
+solent\ac\uk\com504\examples\ticketgate\model\util\DateTimeAdapter.class
+solent\ac\uk\com504\examples\ticketgate\model\dto\ReplyMessage.class
+solent\ac\uk\com504\examples\ticketgate\model\service\GateManagementService.class
+solent\ac\uk\com504\examples\ticketgate\model\service\GateEntryService.class
+solent\ac\uk\com504\examples\ticketgate\model\rest\RestService.class
+solent\ac\uk\com504\examples\ticketgate\model\dto\Ticket.class

@@ -1,0 +1,5 @@
+solent\ac\uk\com504\examples\ticketgate\service\GateEntryServiceImpl.class
+solent\ac\uk\com504\examples\ticketgate\service\GateManagementServiceImpl.class
+solent\ac\uk\com504\examples\ticketgate\crypto\AsymmetricCryptography.class
+solent\ac\uk\com504\examples\ticketgate\crypto\GenerateKeys.class
+solent\ac\uk\com504\examples\ticketgate\service\ServiceFactoryImpl.class

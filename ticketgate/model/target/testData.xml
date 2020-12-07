@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<replyMessage>
+    <code>32</code>
+    <debugMessage>debug message test</debugMessage>
+    <unlocked>false</unlocked>
+    <ticket>
+        <zones>10</zones>
+        <startStation>Waterloo</startStation>
+        <encodedKey>encoded key</encodedKey>
+        <validFrom>07-12-2020 14:51:39</validFrom>
+        <validTo>08-12-2020 14:51:39</validTo>
+    </ticket>
+</replyMessage>
