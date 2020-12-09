@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="WebTesting.TestTicketHandler" time="0.009" errors="1" skipped="0">
+<testsuite tests="1" failures="0" name="WebTesting.TestTicketHandler" time="0.008" errors="1" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.8+10-LTS"/>
@@ -65,19 +65,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="WebTesting.TestTicketHandler" name="testUniqueIdGenerationIdFileEmpty" time="0.009">
-    <error type="java.nio.file.AccessDeniedException:">java.nio.file.AccessDeniedException: 
-	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:89)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
-	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:235)
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:478)
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:219)
-	at java.base/java.nio.file.Files.write(Files.java:3424)
-	at java.base/java.nio.file.Files.writeString(Files.java:3640)
-	at java.base/java.nio.file.Files.writeString(Files.java:3580)
-	at solent.ac.uk.com504.examples.ticketgate.rest.TicketHandler.generateUniquId(TicketHandler.java:144)
-	at WebTesting.TestTicketHandler.testUniqueIdGenerationIdFileEmpty(TestTicketHandler.java:31)
+  <testcase classname="WebTesting.TestTicketHandler" name="testUniqueIdGenerationIdFileEmpty" time="0.008">
+    <error type="java.lang.RuntimeException:">java.lang.RuntimeException: 
+	at WebTesting.TestTicketHandler.testUniqueIdGenerationIdFileEmpty(TestTicketHandler.java:43)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)

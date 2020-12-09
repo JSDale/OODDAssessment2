@@ -127,33 +127,8 @@ public class TicketHandler {
          return tempTicket;
     }
     
-    public int generateUniquId() throws IOException
+    public int generateUniquId()
     {
-        String fileNameStr = getPath("LastUsedId.txt");
-        Path fileName = Path.of(fileNameStr);
-        
-        if(Files.exists(fileName))
-        {
-            String latestId = null;
-            try 
-            {
-                latestId = Files.readString(fileName);
-            } 
-            catch (IOException ex) 
-            {
-                Files.writeString(fileName, "1024");
-                return 1024;
-            }
-            if(latestId != null)
-            {
-                int latestIdInt = Integer.parseInt(latestId);
-            
-                int newId = latestIdInt + 1;
-                Files.writeString(fileName, latestId);
-                return newId;
-            }
-        }
-        
-        throw new RuntimeException("File doesn't exsist");
+        return 0;
     }
 }

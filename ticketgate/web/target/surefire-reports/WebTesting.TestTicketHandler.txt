@@ -1,20 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: WebTesting.TestTicketHandler
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.045 sec <<< FAILURE!
-testUniqueIdGenerationIdFileEmpty(WebTesting.TestTicketHandler)  Time elapsed: 0.009 sec  <<< ERROR!
-java.nio.file.AccessDeniedException: 
-	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:89)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
-	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
-	at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:235)
-	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:478)
-	at java.base/java.nio.file.Files.newOutputStream(Files.java:219)
-	at java.base/java.nio.file.Files.write(Files.java:3424)
-	at java.base/java.nio.file.Files.writeString(Files.java:3640)
-	at java.base/java.nio.file.Files.writeString(Files.java:3580)
-	at solent.ac.uk.com504.examples.ticketgate.rest.TicketHandler.generateUniquId(TicketHandler.java:144)
-	at WebTesting.TestTicketHandler.testUniqueIdGenerationIdFileEmpty(TestTicketHandler.java:31)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.043 sec <<< FAILURE!
+testUniqueIdGenerationIdFileEmpty(WebTesting.TestTicketHandler)  Time elapsed: 0.008 sec  <<< ERROR!
+java.lang.RuntimeException: 
+	at WebTesting.TestTicketHandler.testUniqueIdGenerationIdFileEmpty(TestTicketHandler.java:43)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
