@@ -1,22 +1,40 @@
 
-# Draw IO
+## JPA DAO Model
 
-You will be constructing our use cases using Draw IO
+## Ticket Machine System JPA DAO Model
 
-Draw IO (https://www.draw.io/) is a simple on line javascript based drawing library which can construct UML diagrams in your browser. 
-Images can be saved and loaded as xml files within your project and exported as images which can be included in your documentation.
+![alt text](../UMLmodel/images/ticketExampleClassDiagram.png "Figure ticketExampleClassDiagram.png" )
 
-# Initial Diagrams
+## Original JPA DAO Model in skeleton project
+THe JPA DAO model is derived from the following diagram
 
-## Ticket System use case diagram
+![alt text](../UMLmodel/images/jpaExampleClassDiagram.png "Figure jpaExampleClassDiagram.png" )
 
-![alt text](../UMLmodel/drawio/ticket-gate-usecase-drawio.png "Figure ticket-gate-usecase-drawio.png")
+DTO classes are at the bottom of the diagram. 
+These are simple java beans which are used to pass information between layers.
 
-## Ticket System System Robustness Diagram 
+DAO classes are in the middle of the diagram.
+These are used to Create Delete Update and Retrieve (CRUD) data from the database
 
-![alt text](../UMLmodel/drawio/ticket-gate-robustness-diagram-drawio.png "Figure ticket-gate-robustness-diagram-drawio.png")
+## Use Cases and Robustness Diagrams
 
-## Ticket System Class Diagram
 
-![alt text](../UMLmodel/images/classDiagram.png "Figure classDiagram.png")
+We can use draw.io https://www.draw.io/ to draw other UML diagrams such as Use Cases, Robustness diagrams and Sequence diagrams. 
+
+The draw.io xml files and their related .png images are in the drawio folder. 
+
+These are also referenced below;
+
+
+### Use Cases and Robustness Diagrams
+
+##### Template use case diagram
+
+![alt text](../UMLmodel/drawio/exampleproject-usecase-drawio.png "Figure exampleproject-usecase-drawio.png")
+
+##### Template Robustness Diagram 
+
+![alt text](../UMLmodel/drawio/exampleproject-robustness-diagram-drawio.png "Figure exampleproject-robustness-diagram-drawio.png")
+
+
 
