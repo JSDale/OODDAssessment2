@@ -1,3 +1,3 @@
-solent\ac\uk\com504\examples\ticketgate\rest\RestService.class
-solent\ac\uk\com504\examples\ticketgate\rest\TicketHandler.class
-solent\ac\uk\com504\examples\ticketgate\rest\RestApp.class
+org\solent\com528\project\impl\rest\TicketMachineRestService.class
+org\solent\com528\project\impl\web\WebObjectFactory.class
+org\solent\com528\project\impl\rest\RestApp.class
