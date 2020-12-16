@@ -100,5 +100,18 @@ public class StationDAOJpaImplTest {
 
         LOG.debug("end of stationDAOJpaImplTest");
     }
+    
+    @Test
+    public void testReadInOfFile()
+    {
+        List<Station> stationList = stationDao.findAll();
+        
+        LOG.debug(" ------------------------------------------------------------------------------------------------------------------------- Here is the stationList -------------------------------------------------------------------------------------------------------------------------");
+        for(int i = 0; i < stationList.size(); i++)
+        {
+            Station tempStation = stationList.get(i);
+            LOG.debug(tempStation);
+        }
+    }
 
 }

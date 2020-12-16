@@ -1920,3 +1920,320 @@
 09:22:23.340 [main] DEBUG eclipselink.logging.sql - SELECT t1.ID, t1.UUID, t1.STATION_ID FROM STATION t0, TICKETMACHINE t1 WHERE ((t0.NAME = ?) AND (t0.ID = t1.STATION_ID)) ORDER BY t1.UUID ASC
 	bind => [1 parameter bound]
 09:22:23.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.TicketMachineDAOJpaImplTest - end of createTicketMachinesTest(
+11:44:49.984 [main] DEBUG eclipselink.logging.all - initializing session manager
+11:44:50.019 [main] INFO  eclipselink.logging.all - EclipseLink, version: Eclipse Persistence Services - 2.7.0.v20170811-d680af5
+11:44:51.997 [main] INFO  eclipselink.logging.connection - /file:/D:/Devel/OODDAssessment2/ticketgate/dao-jpa/target/classes/_modelPersistence login successful
+11:44:52.281 [main] DEBUG eclipselink.logging.sql - SELECT ID, NAME, ZONE FROM STATION ORDER BY NAME ASC
+11:44:52.317 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest -  ------------------------------------------------------------------------------------------------------------------------- Here is the stationList -------------------------------------------------------------------------------------------------------------------------
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=4, name=Abbey Road, zone=2}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=1, name=Abbey Road, zone=2}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=5, name=Acton Town, zone=3}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=3, name=Acton Town, zone=3}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=6, name=Aldgate, zone=1}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=7, name=Aldgate East, zone=1}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=8, name=All Saints, zone=2}
+11:44:52.318 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=9, name=Alperton, zone=4}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=10, name=Amersham, zone=9}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=11, name=Angel, zone=1}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=12, name=Archway, zone=2}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=13, name=Arnos Grove, zone=4}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=14, name=Arsenal, zone=2}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=15, name=Baker Street, zone=1}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=16, name=Balham, zone=3}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=17, name=Bank, zone=1}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=18, name=Barbican, zone=1}
+11:44:52.319 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=19, name=Barking, zone=4}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=20, name=Barkingside, zone=4}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=21, name=Barons Court, zone=2}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=22, name=Bayswater, zone=1}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=23, name=Beckton, zone=3}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=24, name=Beckton Park, zone=3}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=25, name=Becontree, zone=5}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=26, name=Belsize Park, zone=2}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=27, name=Bermondsey, zone=2}
+11:44:52.320 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=28, name=Bethnal Green, zone=2}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=29, name=Blackfriars, zone=1}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=30, name=Blackhorse Road, zone=3}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=31, name=Blackwall, zone=2}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=32, name=Bond Street, zone=1}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=33, name=Borough, zone=1}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=34, name=Boston Manor, zone=4}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=35, name=Bounds Green, zone=3}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=36, name=Bow Church, zone=2}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=37, name=Bow Road, zone=2}
+11:44:52.321 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=38, name=Brent Cross, zone=3}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=39, name=Brixton, zone=2}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=40, name=Bromley-by-Bow, zone=2}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=41, name=Buckhurst Hill, zone=5}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=42, name=Burnt Oak, zone=4}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=43, name=Caledonian Road, zone=2}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=44, name=Camden Town, zone=2}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=45, name=Canada Water, zone=2}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=46, name=Canary Wharf, zone=2}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=47, name=Canning Town, zone=3}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=48, name=Cannon Street, zone=1}
+11:44:52.322 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=49, name=Canons Park, zone=5}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=50, name=Chalfont and Latimer, zone=8}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=51, name=Chalk Farm, zone=2}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=52, name=Chancery Lane, zone=1}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=53, name=Charing Cross, zone=1}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=54, name=Chesham, zone=9}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=55, name=Chigwell, zone=4}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=56, name=Chiswick Park, zone=3}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=57, name=Chorleywood, zone=7}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=58, name=Clapham Common, zone=2}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=59, name=Clapham North, zone=2}
+11:44:52.323 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=60, name=Clapham South, zone=2}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=61, name=Cockfosters, zone=5}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=62, name=Colindale, zone=4}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=63, name=Colliers Wood, zone=3}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=64, name=Covent Garden, zone=1}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=65, name=Crossharbour, zone=2}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=66, name=Croxley, zone=7}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=67, name=Custom House, zone=3}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=68, name=Cutty Sark, zone=2}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=69, name=Cyprus, zone=3}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=70, name=Dagenham East, zone=5}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=71, name=Dagenham Heathway, zone=5}
+11:44:52.324 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=72, name=Debden, zone=6}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=73, name=Deptford Bridge, zone=2}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=74, name=Devons Road, zone=2}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=75, name=Dollis Hill, zone=3}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=76, name=Ealing Broadway, zone=3}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=77, name=Ealing Common, zone=3}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=78, name=Earl's Court, zone=1}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=79, name=East Acton, zone=2}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=80, name=East Finchley, zone=3}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=81, name=East Ham, zone=3}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=82, name=East India, zone=2}
+11:44:52.325 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=83, name=East Putney, zone=2}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=84, name=Eastcote, zone=5}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=85, name=Edgware, zone=5}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=86, name=Edgware Road, zone=1}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=87, name=Elephant and Castle, zone=1}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=88, name=Elm Park, zone=6}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=89, name=Elverson Road, zone=2}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=90, name=Embankment, zone=1}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=91, name=Epping, zone=6}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=92, name=Euston, zone=1}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=93, name=Euston Square, zone=1}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=94, name=Fairlop, zone=4}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=95, name=Farringdon, zone=1}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=96, name=Finchley Central, zone=4}
+11:44:52.326 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=97, name=Finchley Road, zone=2}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=98, name=Finsbury Park, zone=2}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=99, name=Fulham Broadway, zone=2}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=100, name=Gallions Reach, zone=3}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=101, name=Gants Hill, zone=4}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=102, name=Gloucester Road, zone=1}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=103, name=Golders Green, zone=3}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=104, name=Goldhawk Road, zone=2}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=105, name=Goodge Street, zone=1}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=106, name=Grange Hill, zone=4}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=107, name=Great Portland Street, zone=1}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=108, name=Green Park, zone=1}
+11:44:52.327 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=109, name=Greenford, zone=4}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=110, name=Greenwich, zone=2}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=111, name=Gunnersbury, zone=3}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=112, name=Hainault, zone=4}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=113, name=Hammersmith, zone=2}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=114, name=Hampstead, zone=2}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=115, name=Hanger Lane, zone=3}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=116, name=Harlesden, zone=3}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=117, name=Harrow and Wealdstone, zone=5}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=118, name=Harrow-on-the-Hill, zone=5}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=119, name=Hatton Cross, zone=5}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=120, name=Heathrow Terminal 4, zone=6}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=121, name=Heathrow Terminal 5, zone=6}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=122, name=Heathrow Terminals 1, 2, 3, zone=6}
+11:44:52.328 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=123, name=Hendon Central, zone=3}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=124, name=Heron Quays, zone=2}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=125, name=High Barnet, zone=5}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=126, name=High Street Kensington, zone=1}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=127, name=Highbury and Islington, zone=2}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=128, name=Highgate, zone=3}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=129, name=Hillingdon, zone=6}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=130, name=Holborn, zone=1}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=131, name=Holland Park, zone=2}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=132, name=Holloway Road, zone=2}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=133, name=Hornchurch, zone=6}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=134, name=Hounslow Central, zone=4}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=135, name=Hounslow East, zone=4}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=136, name=Hounslow West, zone=5}
+11:44:52.329 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=137, name=Hyde Park Corner, zone=1}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=138, name=Ickenham, zone=6}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=139, name=Island Gardens, zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=140, name=Kennington, zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=141, name=Kensal Green, zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=142, name=Kensington (Olympia), zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=143, name=Kentish Town, zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=144, name=Kenton, zone=4}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=145, name=Kew Gardens, zone=3}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=146, name=Kilburn, zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=147, name=Kilburn Park, zone=2}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=148, name=King George V, zone=3}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=149, name=King's Cross St. Pancras, zone=1}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=150, name=Kingsbury, zone=4}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=151, name=Knightsbridge, zone=1}
+11:44:52.330 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=152, name=Ladbroke Grove, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=153, name=Lambeth North, zone=1}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=154, name=Langdon Park, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=155, name=Latimer Road, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=156, name=Leicester Square, zone=1}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=157, name=Lewisham, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=158, name=Leyton, zone=3}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=159, name=Leytonstone, zone=3}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=160, name=Limehouse, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=161, name=Liverpool Street, zone=1}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=162, name=London Bridge, zone=1}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=163, name=London City Airport, zone=3}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=164, name=Loughton, zone=6}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=165, name=Maida Vale, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=166, name=Manor House, zone=2}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=167, name=Mansion House, zone=1}
+11:44:52.331 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=168, name=Marble Arch, zone=1}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=169, name=Marylebone, zone=1}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=170, name=Mile End, zone=2}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=171, name=Mill Hill East, zone=4}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=172, name=Monument, zone=1}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=173, name=Moor Park, zone=6}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=174, name=Moorgate, zone=1}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=175, name=Morden, zone=4}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=176, name=Mornington Crescent, zone=2}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=177, name=Mudchute, zone=2}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=178, name=Neasden, zone=3}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=179, name=Newbury Park, zone=4}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=180, name=North Acton, zone=2}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=181, name=North Ealing, zone=3}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=182, name=North Greenwich, zone=2}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=183, name=North Harrow, zone=5}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=184, name=North Wembley, zone=4}
+11:44:52.332 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=185, name=Northfields, zone=3}
+11:44:52.333 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=186, name=Northolt, zone=5}
+11:44:52.333 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=187, name=Northwick Park, zone=4}
+11:44:52.333 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=188, name=Northwood, zone=6}
+11:44:52.333 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=189, name=Northwood Hills, zone=6}
+11:44:52.333 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=190, name=Notting Hill Gate, zone=1}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=191, name=Oakwood, zone=5}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=192, name=Old Street, zone=1}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=193, name=Osterley, zone=4}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=194, name=Oval, zone=2}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=195, name=Oxford Circus, zone=1}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=196, name=Paddington, zone=1}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=197, name=Park Royal, zone=3}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=198, name=Parsons Green, zone=2}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=199, name=Perivale, zone=4}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=200, name=Piccadilly Circus, zone=1}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=201, name=Pimlico, zone=1}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=202, name=Pinner, zone=5}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=203, name=Plaistow, zone=3}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=204, name=Pontoon Dock, zone=3}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=205, name=Poplar, zone=2}
+11:44:52.334 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=206, name=Preston Road, zone=4}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=207, name=Prince Regent, zone=3}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=208, name=Pudding Mill Lane, zone=2}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=209, name=Putney Bridge, zone=2}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=210, name=Queen's Park, zone=2}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=211, name=Queensbury, zone=4}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=212, name=Queensway, zone=1}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=213, name=Ravenscourt Park, zone=2}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=214, name=Rayners Lane, zone=5}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=215, name=Redbridge, zone=4}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=216, name=Regent's Park, zone=1}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=217, name=Richmond, zone=4}
+11:44:52.335 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=218, name=Rickmansworth, zone=7}
+11:44:52.336 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=219, name=Roding Valley, zone=4}
+11:44:52.336 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=220, name=Royal Albert, zone=3}
+11:44:52.336 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=221, name=Royal Oak, zone=2}
+11:44:52.336 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=222, name=Royal Victoria, zone=3}
+11:44:52.336 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=223, name=Ruislip, zone=6}
+11:44:52.336 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=224, name=Ruislip Gardens, zone=5}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=225, name=Ruislip Manor, zone=6}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=226, name=Russell Square, zone=1}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=227, name=Seven Sisters, zone=3}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=228, name=Shadwell, zone=2}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=229, name=Shepherd's Bush, zone=2}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=230, name=Shepherd's Bush Market, zone=2}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=231, name=Sloane Square, zone=1}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=232, name=Snaresbrook, zone=4}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=233, name=South Ealing, zone=3}
+11:44:52.337 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=234, name=South Harrow, zone=5}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=235, name=South Kensington, zone=1}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=236, name=South Kenton, zone=4}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=237, name=South Quay, zone=2}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=238, name=South Ruislip, zone=5}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=239, name=South Wimbledon, zone=3}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=240, name=South Woodford, zone=4}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=241, name=Southfields, zone=3}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=242, name=Southgate, zone=4}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=243, name=Southwark, zone=1}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=244, name=St. James's Park, zone=1}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=245, name=St. John's Wood, zone=2}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=246, name=St. Paul's, zone=1}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=247, name=Stamford Brook, zone=2}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=248, name=Stanmore, zone=5}
+11:44:52.338 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=249, name=Stepney Green, zone=2}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=250, name=Stockwell, zone=2}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=251, name=Stonebridge Park, zone=3}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=252, name=Stratford, zone=3}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=253, name=Sudbury Hill, zone=4}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=254, name=Sudbury Town, zone=4}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=255, name=Swiss Cottage, zone=2}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=256, name=Temple, zone=1}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=257, name=Theydon Bois, zone=6}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=258, name=Tooting Bec, zone=3}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=259, name=Tooting Broadway, zone=3}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=260, name=Tottenham Court Road, zone=1}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=261, name=Tottenham Hale, zone=3}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=262, name=Totteridge and Whetstone, zone=4}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=263, name=Tower Gateway, zone=1}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=264, name=Tower Hill, zone=1}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=265, name=Tufnell Park, zone=2}
+11:44:52.339 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=266, name=Turnham Green, zone=2}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=267, name=Turnpike Lane, zone=3}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=268, name=Upminster, zone=6}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=269, name=Upminster Bridge, zone=6}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=270, name=Upney, zone=4}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=271, name=Upton Park, zone=3}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=272, name=Uxbridge, zone=6}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=273, name=Vauxhall, zone=1}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=274, name=Victoria, zone=1}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=275, name=Walthamstow Central, zone=3}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=276, name=Wanstead, zone=4}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=277, name=Warren Street, zone=1}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=278, name=Warwick Avenue, zone=2}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=279, name=Waterloo, zone=1}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=2, name=Waterloo, zone=1}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=280, name=Watford, zone=7}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=281, name=Wembley Central, zone=4}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=282, name=Wembley Park, zone=4}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=283, name=West Acton, zone=3}
+11:44:52.340 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=284, name=West Brompton, zone=2}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=285, name=West Finchley, zone=4}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=286, name=West Ham, zone=3}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=287, name=West Hampstead, zone=2}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=288, name=West Harrow, zone=5}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=289, name=West India Quay, zone=2}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=290, name=West Kensington, zone=2}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=291, name=West Ruislip, zone=6}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=292, name=West Silvertown, zone=3}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=293, name=Westbourne Park, zone=2}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=294, name=Westferry, zone=2}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=295, name=Westminster, zone=1}
+11:44:52.341 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=296, name=White City, zone=2}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=297, name=Whitechapel, zone=2}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=298, name=Willesden Green, zone=2}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=299, name=Willesden Junction, zone=3}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=300, name=Wimbledon, zone=3}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=301, name=Wimbledon Park, zone=3}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=302, name=Wood Green, zone=3}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=303, name=Wood Lane, zone=2}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=304, name=Woodford, zone=4}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=305, name=Woodside Park, zone=4}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=306, name=Woolwich Arsenal, zone=4}
+11:44:52.342 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest - Station{id=307, name=for Maritime Greenwich, zone=2}
+11:48:06.596 [main] DEBUG eclipselink.logging.all - initializing session manager
+11:48:06.639 [main] INFO  eclipselink.logging.all - EclipseLink, version: Eclipse Persistence Services - 2.7.0.v20170811-d680af5
+11:48:07.385 [main] INFO  eclipselink.logging.connection - /file:/D:/Devel/OODDAssessment2/ticketgate/dao-jpa/target/classes/_modelPersistence login successful
+11:48:07.726 [main] DEBUG eclipselink.logging.sql - SELECT ID, NAME, ZONE FROM STATION ORDER BY NAME ASC
+11:48:07.767 [main] DEBUG org.solent.com528.project.impl.dao.jpa.test.StationDAOJpaImplTest -  ------------------------------------------------------------------------------------------------------------------------- Here is the stationList -------------------------------------------------------------------------------------------------------------------------
