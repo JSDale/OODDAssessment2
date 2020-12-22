@@ -4,6 +4,12 @@
     Author     : Jacob
 --%>
 
+<%@page import="org.solent.com528.project.model.service.ServiceFacade"%>
+<%@page import="org.solent.com528.project.impl.webclient.WebClientObjectFactory"%>
+<%@page import="org.solent.com528.project.model.dao.StationDAO"%>
+<%@page import="org.solent.com528.project.model.dto.Station"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="org.solent.com528.project.impl.webclient.DateTimeAdapter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
@@ -11,6 +17,9 @@
 
 <%
     String errorMessage = "";
+    ServiceFacade serviceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
+    StationDAO stationDAO = serviceFacade.getStationDAO();
+    List<Station> stationList =  stationDAO.findAll();
 
     // pull in standard date format
     DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
@@ -31,6 +40,12 @@
         startStationStr = "UNDEFINED";
     }
     
+    String endStationStr = request.getParameter("endStation");
+    if (endStationStr == null || startStationStr.isEmpty()) {
+        endStationStr = "UNDEFINED";
+    }
+
+    
     String ticketStr = "";
 %>
 
@@ -46,22 +61,39 @@
         <!-- print error message if there is one -->
         <div style="color:red;"><%=errorMessage%></div>
 
-        <form action="./ticketMachine.jsp"  method="post">
+        <form action="./TicketMachine.jsp"  method="post">
             <table>
                 <tr>
                     <td>Start Station:</td>
                     <td>
                         <select name="cboItems" id="cboItems">
-                            <option value="-1">--Select--</option>
-                            <%
-                               
+                            <option value="<%=startStationStr%>">--Select--</option>
+                             <%
+                                for (Station station : stationList) {
                             %>
+                           <option value="<%=startStationStr%>"><%=station.getName()%></option>
+                            <%
+                                }
+                            %>
+                            <option value="<%=startStationStr%>">--Select--</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
-                    <td>Starting Station:</td>
-                    <td><input type="text" name="startStation" value="<%=startStationStr%>"></td>
+                    <td>End Station:</td>
+                    <td>
+                         <select name="cboItems" id="cboItems">
+                             <option value="<%=startStationStr%>">--Select--</option>
+                             <%
+                                for (Station station : stationList) {
+                            %>
+                           <option value="<%=startStationStr%>"><%=station.getName()%></option>
+                            <%
+                                }
+                            %>
+                            <option value="<%=startStationStr%>">--Select--</option>
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <td>Valid From Time:</td>
