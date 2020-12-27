@@ -4,6 +4,11 @@
     Author     : Jacob
 --%>
 
+<%@page import="java.util.Set"%>
+<%@page import="org.solent.com528.project.clientservice.impl.TicketEncoderImpl"%>
+<%@page import="org.solent.com528.project.impl.webclient.TicketInformation"%>
+<%@page import="org.solent.com528.project.model.dto.Rate"%>
+<%@page import="org.solent.com528.project.model.dto.Ticket"%>
 <%@page import="org.solent.com528.project.model.dao.PriceCalculatorDAO"%>
 <%@page import="org.solent.com528.project.model.service.ServiceFacade"%>
 <%@page import="org.solent.com528.project.impl.webclient.WebClientObjectFactory"%>
@@ -32,11 +37,7 @@
         validFromStr = df.format(new Date());
     }
 
-    String validToStr = request.getParameter("validTo");
-    // valid to initialised to date plus one day
-    if (validToStr == null || validToStr.isEmpty()) {
-        validToStr = df.format(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
-    }
+    String validToStr = df.format(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
         
     String startStationStr = request.getParameter("startStation");
     if (startStationStr == null || startStationStr.isEmpty()) {
@@ -54,20 +55,6 @@
     String cardNoStr = request.getParameter("cardNo");
     if(cardNoStr == null || cardNoStr.isEmpty()){
         cardNoStr ="";
-    }
-    
-    int cardNo = 0;
-    try{
-        cardNo = Integer.parseInt(cardNoStr);
-    }
-    catch(Exception ex)
-    {
-        cardNo = 0;
-    }
-    boolean cardIsReal = false;
-    if(cardNoStr.length() == 16)
-    {
-        cardIsReal = true;
     }
     
     if (startStationStr != "UNDEFINED" && endStationStr != "UNDEFINED") {
@@ -92,10 +79,44 @@
           
           double price = zoneDif * pricePerZone;
           priceStr = "£"+price;
+          
+          TicketInformation.StartStation = startStationStr;
+          TicketInformation.validFrom = validFromDate;
+          TicketInformation.price = price;
    }
    
+     int cardNo = 0;
+    try{
+        cardNo = Integer.parseInt(cardNoStr);
+    }
+    catch(Exception ex)
+    {
+        cardNo = 0;
+    }
+    boolean cardIsReal = false;
+    if(cardNoStr.length() == 16)
+    {
+        cardIsReal = true;
+    }
     
+    if(cardIsReal)
+    {
+        Rate rate = priceCalcDAO.getRate(TicketInformation.validFrom);
+        Ticket ticket = new Ticket();
+        ticket.setCost(TicketInformation.price);
+        ticket.setIssueDate(TicketInformation.validFrom);
+        ticket.setStartStation(TicketInformation.StartStation);
+        ticket.setRate(rate);
+        String encodedTicket =  TicketEncoderImpl.encodeTicket(ticket);
+        String[] encodedTicketSplit = encodedTicket.split("<encryptedHash>");
+        encodedTicketSplit = encodedTicketSplit[1].split("</encryptedHash");
+        String hash = encodedTicketSplit[0];
+        ticket.setEncryptedHash(hash);
     
+        
+        ticketStr = encodedTicket;
+    }
+   
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -151,10 +172,6 @@
                     <td>Valid From Time:</td>
                     <td><input type="text" name="validFrom" value="<%=validFromStr%>"></td>
                 </tr>
-                <tr>
-                    <td>Valid To Time:</td>
-                    <td><input type="text" name="validTo" value="<%=validToStr%>" readonly></td>
-                </tr>
             </table>
             <button type="submit">Checkout</button>
         </form> 
@@ -168,12 +185,10 @@
                     <td>Enter Card Number:</td>
                     <td><input type="text" name="cardNo" value="<%=cardNoStr%>"></td>
                 </tr>
-                <tr>
-                    <td>Printed Ticket</td>
-                    <td><input type="text" id="ticketText" value="<%=ticketStr%>" readonly></td>
-                </tr>
             </table>
             <button type="submit" >Buy Ticket</button>
         </form>
+        <h2>Printed Ticket</h2>
+        <textarea id="ticketTextArea" rows="10" cols="120" readonly><%=ticketStr%></textarea>
     </body>
 </html>
