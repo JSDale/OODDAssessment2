@@ -20,6 +20,7 @@
     ServiceFacade serviceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
     StationDAO stationDAO = serviceFacade.getStationDAO();
     List<Station> stationList =  stationDAO.findAll();
+    String ticketStr = "";
 
     // pull in standard date format
     DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
@@ -41,12 +42,16 @@
     }
     
     String endStationStr = request.getParameter("endStation");
-    if (endStationStr == null || startStationStr.isEmpty()) {
+    if (endStationStr == null || endStationStr.isEmpty()) {
         endStationStr = "UNDEFINED";
+    }
+    String priceStr = request.getParameter("price");
+    if (priceStr == null || priceStr.isEmpty()) {
+        priceStr = "00.00";
     }
 
     
-    String ticketStr = "";
+    
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -66,7 +71,7 @@
                 <tr>
                     <td>Start Station:</td>
                     <td>
-                        <select name="cboItems" id="cboItems">
+                        <select name="cboStartStation" id="cboStartStation">
                             <option value="<%=startStationStr%>">--Select--</option>
                              <%
                                 for (Station station : stationList) {
@@ -82,7 +87,7 @@
                 <tr>
                     <td>End Station:</td>
                     <td>
-                         <select name="cboItems" id="cboItems">
+                         <select name="cboEndStation" id="cboEndStation">
                              <option value="<%=startStationStr%>">--Select--</option>
                              <%
                                 for (Station station : stationList) {
@@ -96,18 +101,22 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Price:</td>
+                    <td><input type="text" name="price" value="<%=priceStr%>" readonly></td>
+                </tr>
+                <tr>
                     <td>Valid From Time:</td>
                     <td><input type="text" name="validFrom" value="<%=validFromStr%>"></td>
                 </tr>
                 <tr>
                     <td>Valid To Time:</td>
-                    <td><input type="text" name="validTo" value="<%=validToStr%>"></td>
+                    <td><input type="text" name="validTo" value="<%=validToStr%>" readonly></td>
                 </tr>
             </table>
             <button type="submit" >Create Ticket</button>
         </form> 
-        <h1>generated ticket XML</h1>
-        <textarea id="ticketTextArea" rows="10" cols="120"><%=ticketStr%></textarea>
+        <h1>Generated ticket</h1>
+            <td><input type="text" id="ticketText" value="<%=ticketStr%>" readonly></td>
 
     </body>
 </html>
