@@ -6,6 +6,7 @@
 package org.solent.com528.project.model.dto;
 
 import java.util.Date;
+import java.util.UUID;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -28,6 +29,30 @@ public class Ticket {
     private Rate rate;
 
     private Date issueDate;
+    
+    private int numberOfZones;
+    
+    private String Id;
+    
+    public String getId()
+    {
+        return Id;
+    }
+    
+    public void setId()
+    {
+        this.Id = CreateUUID();
+    }
+    
+    public int getNumberOfZones()
+    {
+        return this.numberOfZones;
+    }
+    
+    public void setNumberOfZones(int numberOfZones)
+    {
+        this.numberOfZones = numberOfZones;
+    }
 
     public String getStartStation() {
         return startStation;
@@ -68,10 +93,16 @@ public class Ticket {
     public void setIssueDate(Date issueDate) {
         this.issueDate = issueDate;
     }
+    
+    private String CreateUUID()
+    {
+        UUID uuid = UUID.randomUUID();
+        return uuid.toString();
+    }
 
     @Override
     public String toString() {
-        return "Ticket{" + "startStation=" + startStation + ", cost=" + cost + ", encryptedHash=" + encryptedHash + ", rate=" + rate + ", issueDate=" + issueDate + '}';
+        return "Ticket{" +"id=" + Id + ", NumberOfZonesTravelable=" + numberOfZones + ", startStation=" + startStation + ", cost=" + cost + ", encryptedHash=" + encryptedHash + ", rate=" + rate + ", issueDate=" + issueDate + '}';
     }
 
 

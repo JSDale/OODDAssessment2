@@ -83,6 +83,7 @@
           TicketInformation.StartStation = startStationStr;
           TicketInformation.validFrom = validFromDate;
           TicketInformation.price = price;
+          TicketInformation.zonesTravelable = zoneDif;
    }
    
      int cardNo = 0;
@@ -107,14 +108,15 @@
         ticket.setIssueDate(TicketInformation.validFrom);
         ticket.setStartStation(TicketInformation.StartStation);
         ticket.setRate(rate);
+        ticket.setId();
+        ticket.setNumberOfZones(TicketInformation.zonesTravelable);
         String encodedTicket =  TicketEncoderImpl.encodeTicket(ticket);
         String[] encodedTicketSplit = encodedTicket.split("<encryptedHash>");
         encodedTicketSplit = encodedTicketSplit[1].split("</encryptedHash");
         String hash = encodedTicketSplit[0];
         ticket.setEncryptedHash(hash);
-    
         
-        ticketStr = encodedTicket;
+        ticketStr = encodedTicket; 
     }
    
 %>
@@ -124,7 +126,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage gate Locks</title>
+        <title>Purchase Ticket</title>
     </head>
     <body>
         <h1>Generate a New Ticket</h1>
@@ -189,6 +191,6 @@
             <button type="submit" >Buy Ticket</button>
         </form>
         <h2>Printed Ticket</h2>
-        <textarea id="ticketTextArea" rows="10" cols="120" readonly><%=ticketStr%></textarea>
+        <textarea id="ticketTextArea" rows="15" cols="150" readonly><%=ticketStr%></textarea>
     </body>
 </html>

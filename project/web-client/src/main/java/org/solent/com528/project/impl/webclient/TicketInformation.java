@@ -15,4 +15,5 @@ public class TicketInformation {
     public static String StartStation;
     public static Date validFrom;
     public static double price;
+    public static int zonesTravelable;
 }
