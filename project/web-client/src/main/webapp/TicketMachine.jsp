@@ -4,6 +4,7 @@
     Author     : Jacob
 --%>
 
+<%@page import="org.solent.com528.project.impl.webclient.TicketLogger"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.solent.com528.project.clientservice.impl.TicketEncoderImpl"%>
 <%@page import="org.solent.com528.project.impl.webclient.TicketInformation"%>
@@ -115,6 +116,9 @@
         encodedTicketSplit = encodedTicketSplit[1].split("</encryptedHash");
         String hash = encodedTicketSplit[0];
         ticket.setEncryptedHash(hash);
+        
+        //TicketLogger ticketLogger = new TicketLogger();
+        //ticketLogger.LogTicketAsXML(encodedTicket);
         
         ticketStr = encodedTicket; 
     }

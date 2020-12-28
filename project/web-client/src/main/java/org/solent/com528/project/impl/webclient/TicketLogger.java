@@ -5,19 +5,22 @@
  */
 package org.solent.com528.project.impl.webclient;
 
-import java.util.logging.Logger;
-
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  *
  * @author Jacob
  */
 public class TicketLogger {
-    private final Logger logger = Logger.getLogger(this.getClass().toString());
     
     public void LogTicketAsXML(String encodedTicket)
     {
-        
+        //TODO implement this
     }
     
 }

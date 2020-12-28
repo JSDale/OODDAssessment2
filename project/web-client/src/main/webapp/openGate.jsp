@@ -4,10 +4,21 @@
     Author     : Jacob
 --%>
 
+<%@page import="org.solent.com528.project.clientservice.impl.TicketEncoderImpl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    String errorMessage = "Gate Closed";
-    String ticketStr = "";
+String errorMessage = "";
+boolean isValid = false;
+
+String ticketStr = request.getParameter("ticketTextArea");
+    if (ticketStr == null || ticketStr.isEmpty()) {
+        ticketStr = "";
+    }
+
+if(ticketStr != "")
+{
+    isValid = TicketEncoderImpl.validateTicket(ticketStr);
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -16,16 +27,21 @@
         <title>Manage Gate Locks</title>
     </head>
     <body>
+        <div style="color:red;"><%=errorMessage%></div>
         <h1>Open Gate</h1>
         <form action="./openGate.jsp"  method="post">
             <table>
                 <tr>Enter Ticket:</tr>
                 <tr>
-                    <td><textarea id="ticketTextArea" rows="10" cols="120" readonly><%=ticketStr%></textarea></td>
+                    <td><textarea name="ticketTextArea" id="ticketTextArea" rows="15" cols="150" ><%=ticketStr%></textarea></td>
                 </tr>
             </table>
             <button type="submit" >Open Gate</button>
         </form>
-        <div style="color:red; font-size: 64px; padding-top: 50px;"><%=errorMessage%></div>        
+        <% if (isValid) { %>
+        <div style="color:green;font-size:64px">GATE OPEN</div>
+        <%  } else {  %>
+        <div style="color:red; font-size:64px">GATE LOCKED</div>
+        <% }%>        
     </body>
 </html>
