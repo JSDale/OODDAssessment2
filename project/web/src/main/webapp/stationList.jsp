@@ -56,22 +56,26 @@
     if (actionStr == null || actionStr.isEmpty()) {
         // just display list
 
-    } else if ("deleteAllStations".equals(actionStr)) {
+    } 
+    else if ("deleteAllStations".equals(actionStr)) {
         stationDAO.deleteAll();
         stationList = stationDAO.findAll();
         message = "all stations deleted";
 
-    } else if ("deleteStation".equals(actionStr)) {
+    } 
+    else if ("deleteStation".equals(actionStr)) {
         Station station = stationDAO.findByName(stationName);
         if (station == null) {
             errorMessage = "ERROR: cannot delete unknown station name: " + stationName;
-        } else {
+        } 
+        else {
             stationDAO.delete(station);
             zones = stationDAO.getAllZones();
             stationList = stationDAO.findByZone(zone);
             message = "station deleted: " + stationName;
         }
-    } else {
+    } 
+    else {
         errorMessage = "ERROR: page called for unknown action";
     }
 
@@ -124,7 +128,11 @@
                 <th>Station Zone</th>
             </tr>
             <%
+                String tempStationName = "";
                 for (Station station : stationList) {
+                    if(!tempStationName.equals(station.getName()))
+                    {
+                        tempStationName = station.getName();
             %>
             <tr>
                 <td size="36" ><%=station.getName()%></td>
@@ -147,6 +155,7 @@
                 </td>
             </tr>
             <%
+                    }
                 }
             %>
         </table> 
