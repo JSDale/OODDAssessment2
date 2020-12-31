@@ -172,27 +172,7 @@
                 <input type="hidden" name="action" value="updateStationZone">
                 <button type="submit" >Update Station zone</button>
             </p>
-        </form> 
-
-        <%
-            for (TicketMachine ticketMachine : ticketMachineList) {
-        %>
-        <%= ticketMachine.getUuid()%>
-        <form action="./station.jsp" method="get">
-            <input type="text" size="36" name="ticketMachineUuid" value="<%= ticketMachine.getUuid()%> readonly ">
-            <input type="hidden" name="stationName" value="<%=station.getName()%>">
-            <input type="hidden" name="action" value="removeTicketMachine">
-            <button type="submit" >remove ticket machine from station</button>
-        </form> 
-        <%
-            }
-        %>
-        <br>
-        <form action="./AssignMachineToStation.jsp" method="get">
-            <input type="hidden" name="action" value="addTicketMachine">
-            <input type="hidden" name="stationName" value="<%=station.getName()%>">
-            <button type="submit" >add ticket machine to station</button>
-        </form> 
-
+            <p>To assign / un-assign a ticket machine click: <a href="./ticketMachineList.jsp">here</p>
+        </form>
     </body>
 </html>

@@ -39,7 +39,7 @@
         <div style="color:green;"><%=message%></div>
          <table>
                 <tr>
-                    <td>Start Station:</td>
+                    <td>Ticket Machine UUID:</td>
                     <td>
                         <select name="ticketMachineUUID" id="cboStartStation">
                             <option value="UNDEFINED">--Select--</option>

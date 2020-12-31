@@ -4,6 +4,8 @@
     Author     : cgallen
 --%>
 
+<%@page import="org.solent.com528.project.model.dto.TicketMachine"%>
+<%@page import="org.solent.com528.project.model.dao.TicketMachineDAO"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="org.solent.com528.project.impl.webclient.WebClientObjectFactory"%>
