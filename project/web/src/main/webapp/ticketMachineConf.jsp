@@ -25,17 +25,35 @@
     Station tempStation = null;
     
     String originalMachineUuid = request.getParameter("TicketMachineUuid");
+    if(originalMachineUuid == null || originalMachineUuid.isEmpty())
+    {
+        originalMachineUuid = "";
+    }
     
     String machineIdStr = request.getParameter("TicketMachineId");
+    if(machineIdStr == null || machineIdStr.isEmpty())
+    {
+        machineIdStr = "-1";
+    }
     Long machineId= Long.parseLong(machineIdStr);
     
     String stationNameStr = request.getParameter("stationName");
+    if(stationNameStr == null || stationNameStr.isEmpty())
+    {
+        stationNameStr = "UNASSIGNED";
+    }
+    
     if(!stationNameStr.equals("UNASSIGNED"))
     {
         tempStation = stationDAO.findByName(stationNameStr);
     }
     
     String actionStr = request.getParameter("action");
+    if(actionStr == null || actionStr.isEmpty())
+    {
+        actionStr = "";
+    }
+    
     if(actionStr.equals("createTicketMachine"))
     {
         TicketMachine tempMachine = new TicketMachine();

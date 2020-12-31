@@ -22,6 +22,27 @@
     ServiceFacade serviceFacade = (ServiceFacade) WebObjectFactory.getServiceFacade();
     TicketMachineDAO machineDAO = serviceFacade.getTicketMachineDAO();
     List<TicketMachine> ticketMachineList = machineDAO.findAll();
+    String errorMessageAction = "Something went wrong, action couldn't be completed";
+    
+    String actionStr = request.getParameter("action");
+    if( actionStr == null || actionStr.isEmpty())
+    {
+        actionStr = "";
+    }
+    
+    if(actionStr.equals("deleteTicketMachine"))
+    {
+        try
+        {
+            String machineIdStr = request.getParameter("TicketMachineId");
+            Long tempMachineId = Long.parseLong(machineIdStr);
+             machineDAO.deleteById(tempMachineId);
+        }
+        catch(Exception ex)
+        {
+            errorMessage = errorMessageAction;
+        }
+    }
 %>
 
 <html>
@@ -38,7 +59,7 @@
 
         <p>The time is: <%= new Date().toString()%> (note page is auto refreshed every 20 seconds)</p>
 
-        <form action="./ticketMachine.jsp" method="get">
+        <form action="./ticketMachineConf.jsp" method="get">
             <input type="hidden" name="action" value="createTicketMachine">
             <button type="submit" >Create New Ticket Machine</button>
         </form> 
@@ -93,6 +114,7 @@
                 <td>
                     <form action="./ticketMachineList.jsp" method="get">
                         <input type="hidden" name="stationName" value="<%=station.getName()%>">
+                        <input type="hidden" name="TicketMachineId" value="<%=machine.getId()%>">
                         <input type="hidden" name="action" value="deleteTicketMachine">
                         <button type="submit" style="color:red;" >Delete Ticket Machine</button>
                     </form> 
