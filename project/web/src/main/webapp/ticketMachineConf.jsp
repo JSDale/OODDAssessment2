@@ -1,12 +1,12 @@
-<%@page import="java.util.UUID"%>
-<%@page import="org.solent.com528.project.model.dao.TicketMachineDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%-- 
-    Document   : ticketMachine
+    Document   : ticketMachineConf
     Created on : 31 Dec 2020, 12:19:24
     Author     : Jacob
 --%>
+<%@page import="java.util.UUID"%>
+<%@page import="org.solent.com528.project.model.dao.TicketMachineDAO"%>
 <%@page import="org.solent.com528.project.model.dao.StationDAO"%>
 <%@page import="org.solent.com528.project.impl.web.WebObjectFactory"%>
 <%@page import="org.solent.com528.project.model.service.ServiceFacade"%>
@@ -22,7 +22,7 @@
     TicketMachineDAO machineDAO = serviceFacade.getTicketMachineDAO();
     List<Station> stationList = stationDAO.findAll();
     TicketMachine ticketMachine = new TicketMachine();
-    Station station = null;
+    Station tempStation = null;
     
     String originalMachineUuid = request.getParameter("TicketMachineUuid");
     
@@ -32,7 +32,7 @@
     String stationNameStr = request.getParameter("stationName");
     if(!stationNameStr.equals("UNASSIGNED"))
     {
-        station = stationDAO.findByName(stationNameStr);
+        tempStation = stationDAO.findByName(stationNameStr);
     }
     
     String actionStr = request.getParameter("action");
@@ -58,18 +58,23 @@
             return;
         }
         TicketMachine tempTicketMachine = new TicketMachine();
-        tempTicketMachine.setStation(station);
+        tempTicketMachine.setStation(tempStation);
         tempTicketMachine.setId(machineId);
         tempTicketMachine.setUuid(originalMachineUuid);
-        
-        machineDAO.delete(tempTicketMachine);
+        try{
+        machineDAO.deleteById(machineId);
          
         tempTicketMachine.setUuid(newUuid);
         
         machineDAO.save(tempTicketMachine);
+        
+        message = "Machine updated!";
+        }
+        catch(Exception ex)
+        {
+            errorMessage = "something went wrong";
+        }
     }
-    
-    String ticketMachineUuid = request.getParameter("TicketMachineUuid");
 %>
 
 <html>
@@ -79,7 +84,7 @@
     </head>
     <body>
 
-        <H1>Ticket Machine <%=ticketMachineUuid%></H1>
+        <H1>Ticket Machine <%=originalMachineUuid%></H1>
         <!-- print error message if there is one -->
         <div style="color:red;"><%=errorMessage%></div>
         <div style="color:green;"><%=message%></div>
@@ -91,12 +96,16 @@
         <br>
         <!-- if you used method post the url parameters would be hidden -->
         <form action="./ticketMachineConf.jsp" method="get">
-            <p>Ticket Machine UUID: <input type="text" size="36" name="updateTicketMachineUuid" value="<%=ticketMachineUuid%>">
-                <input type="hidden" name="machineUUID" value="<%=ticketMachine.getUuid()%>">
-                <input type="hidden" name="action" value="updateMachineUUID">
+            <p>Ticket Machine UUID: <input type="text" size="36" name="updateTicketMachineUuid" value="<%=originalMachineUuid%>">
+                <input type="hidden" name="TicketMachineUuid" value="<%=ticketMachine.getUuid()%>">
+                <input type="hidden" name="originalUuid" value="<%=originalMachineUuid%>">
+                <input type="hidden" name="TicketMachineId" value="<%=machineId%>">
+                <input type="hidden" name="action" value="updateMachineUuid">
+                <input type="hidden" name="stationName" value="stationNameStr">
                 <button type="submit" >Update Ticket Machine UUID</button>
             </p>
-            
+        </form>
+        <form>
             <table>
              <tr>
                 <td>Station:</td>
