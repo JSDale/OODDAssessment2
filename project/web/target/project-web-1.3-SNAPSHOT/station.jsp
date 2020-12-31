@@ -188,7 +188,7 @@
             }
         %>
         <br>
-        <form action="./station.jsp" method="get">
+        <form action="./AssignMachineToStation.jsp" method="get">
             <input type="hidden" name="action" value="addTicketMachine">
             <input type="hidden" name="stationName" value="<%=station.getName()%>">
             <button type="submit" >add ticket machine to station</button>
