@@ -122,8 +122,9 @@ public class TicketMachineRestService {
             
             List<Station> stationList = stationDAO.findAll();
             String tempStationName = "";
-            for(Station tempStation : stationList)
+            for(int i = 0; i < stationList.size(); i++)
             {
+                Station tempStation = stationList.get(i);
                 if(tempStationName.equals(tempStation.getName()))
                 {
                     stationList.remove(tempStation);
