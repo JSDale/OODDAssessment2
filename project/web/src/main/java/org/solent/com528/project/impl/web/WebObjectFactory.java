@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.UUID;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -22,6 +23,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.solent.com528.project.impl.dao.jaxb.StationDAOJaxbImpl;
 import org.solent.com528.project.impl.service.ServiceObjectFactoryJpaImpl;
+import org.solent.com528.project.impl.service.rest.client.ClientObjectFactoryImpl;
+import org.solent.com528.project.impl.service.rest.client.ConfigurationPoller;
 import org.solent.com528.project.model.dao.StationDAO;
 import org.solent.com528.project.model.dto.Station;
 import org.solent.com528.project.model.service.ServiceFacade;
@@ -45,6 +48,11 @@ public class WebObjectFactory implements ServletContextListener {
     private static ServiceFacade serviceFacade = null;
 
     private static ServiceObjectFactory serviceObjectFactory = null;
+    
+    private static ServiceObjectFactory clientObjectFactory = null;
+    
+    private static ConfigurationPoller configurationPoller = null;
+
 
     public static ServiceFacade getServiceFacade() {
         if (serviceFacade == null) {
@@ -64,6 +72,32 @@ public class WebObjectFactory implements ServletContextListener {
                     StationDAO stationDAO = serviceFacade.getStationDAO();
                     List<Station> stationList = loadDefaultStations();
                     stationDAO.saveAll(stationList);
+                }
+            }
+        }
+        return serviceFacade;
+    }
+    
+    public static ServiceFacade getClientServiceFacade()
+    {
+        if (serviceFacade == null) {
+            synchronized (WebObjectFactory.class) {
+                if (serviceFacade == null) {
+
+                    LOG.debug("client web application starting");
+                    clientObjectFactory = new ClientObjectFactoryImpl();
+                    serviceFacade = clientObjectFactory.getServiceFacade();
+
+                    configurationPoller = new ConfigurationPoller(serviceFacade);
+                    // initially random uuid - can be set
+                    String ticketMachineUuid = UUID.randomUUID().toString();
+                    configurationPoller.setTicketMachineUuid(ticketMachineUuid);
+                    long initialDelay = 0;
+                    long delay = 30; // every 30 seconds
+                    LOG.debug("starting configuration poller initialDelay=" + initialDelay
+                            + ", delay=" + delay
+                            + ", ticketMachineUuid=" + ticketMachineUuid);
+                    configurationPoller.init(initialDelay, delay);
                 }
             }
         }

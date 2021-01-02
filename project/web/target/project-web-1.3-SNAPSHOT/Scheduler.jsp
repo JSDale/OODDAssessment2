@@ -4,24 +4,22 @@
     Author     : Jacob
 --%>
 
+<%@page import="org.solent.com528.project.impl.web.WebObjectFactory"%>
+<%@page import="org.solent.com528.project.model.dao.PriceCalculatorDAO"%>
+<%@page import="org.solent.com528.project.model.service.ServiceFacade"%>
 <%@page import="java.util.Date"%>
 <%@page import="org.solent.com528.project.impl.webclient.DateTimeAdapter"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
-<%@page import="org.solent.com528.project.model.dao.PriceCalculatorDAO"%>
-<%@page import="org.solent.com528.project.impl.web.WebObjectFactory"%>
-<%@page import="org.solent.com528.project.model.service.ServiceFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
     String errorMessage = "";
     String message = "";
     DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
-    ServiceFacade serviceFacade = (ServiceFacade) WebObjectFactory.getServiceFacade();
-    PriceCalculatorDAO priceCalcDAO = serviceFacade.getPriceCalculatorDAO();
-    Date date = new Date(System.currentTimeMillis());
-    //double currentOffPeakPriceDbl = priceCalcDAO.getOffpeakPricePerZone();
-    double currentOffPeakPriceDbl = priceCalcDAO.getPricePerZone(date);
+    ServiceFacade cleintServiceFacade = (ServiceFacade) WebObjectFactory.getClientServiceFacade();
+    PriceCalculatorDAO priceCalcDAO = cleintServiceFacade.getPriceCalculatorDAO();
+    double currentOffPeakPriceDbl = priceCalcDAO.getOffpeakPricePerZone();
     
     String currentOffPeakPriceStr = null;
     try
@@ -47,7 +45,7 @@
         <form action="./Scheduler.jsp"  method="post">
             <table>
                 <tr>
-                    <td>Current Pricing Off Peak: </td>
+                    <td>Current Pricing Off Peak (per zone): </td>
                    <td><input type="text" name="currentOffPeakPrice" value="<%=currentOffPeakPriceStr%>" readonly></td>
                 </tr>
                 
