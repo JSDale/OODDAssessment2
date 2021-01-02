@@ -25,11 +25,16 @@
     Station tempStation = null;
     
     String originalMachineUuid = request.getParameter("TicketMachineUuid");
-    if(originalMachineUuid == null || originalMachineUuid.isEmpty())
-    {
-        errorMessage = "Something went wrong with UUID";
-        System.exit(1);
+    try{
+        if(originalMachineUuid == null || originalMachineUuid.isEmpty())
+        {
+            originalMachineUuid = "";
+        }
     }
+    catch(Exception ex)
+        {
+            errorMessage = "something went wrong assigning UUID.";
+        }
     
     String machineIdStr = request.getParameter("TicketMachineId");
     if(machineIdStr == null || machineIdStr.isEmpty())
@@ -71,19 +76,45 @@
     if(actionStr.equals("updateMachineUuid"))
     {
         String newUuid = request.getParameter("updateTicketMachineUuid");
-        if(newUuid == null || newUuid.isEmpty())
+        try{
+            if(newUuid == null || newUuid.isEmpty())
+            {
+                throw new Exception("UuidError");
+            }
+        }
+        catch(Exception ex)
         {
-            errorMessage = "please enter a UUID.";
-            return;
+            errorMessage = "something went wrong assigning UUID.";
         }
         TicketMachine tempTicketMachine = new TicketMachine();
         tempTicketMachine.setStation(tempStation);
+        tempTicketMachine.setId(machineId);
+        try{
+            machineDAO.deleteById(machineId);
+
+            tempTicketMachine.setUuid(newUuid);
+
+            machineDAO.save(tempTicketMachine);
+
+            message = "Machine updated!";
+        }
+        catch(Exception ex)
+        {
+            errorMessage = "something went wrong";
+        }
+    }
+        
+    if(actionStr.equals("updateMachineStation"))
+    {
+        String newStationStr = request.getParameter("stationName");
+        Station replacementStation = stationDAO.findByName(newStationStr);
+        TicketMachine tempTicketMachine = new TicketMachine();
         tempTicketMachine.setId(machineId);
         tempTicketMachine.setUuid(originalMachineUuid);
         try{
         machineDAO.deleteById(machineId);
          
-        tempTicketMachine.setUuid(newUuid);
+        tempTicketMachine.setStation(replacementStation);
         
         machineDAO.save(tempTicketMachine);
         
@@ -94,21 +125,16 @@
             errorMessage = "something went wrong";
         }
     }
-        
-        if(actionStr.equals("updateMachineStation"))
+    
+     if(actionStr.equals("removeMachineStation"))
     {
-        String newStationStr = request.getParameter("stationName");
-        String originalStationName = request.getParameter("originalStationName");
-        Station replacedStation = stationDAO.findByName(originalStationName);
-        Station replacementStation = stationDAO.findByName(newStationStr);
         TicketMachine tempTicketMachine = new TicketMachine();
-        tempTicketMachine.setStation(replacedStation);
         tempTicketMachine.setId(machineId);
         tempTicketMachine.setUuid(originalMachineUuid);
         try{
         machineDAO.deleteById(machineId);
          
-        tempTicketMachine.setStation(replacementStation);
+        tempTicketMachine.setStation(tempStation);
         
         machineDAO.save(tempTicketMachine);
         
@@ -128,7 +154,7 @@
     </head>
     <body>
 
-        <H1>Ticket Machine <%=originalMachineUuid%></H1>
+        <H1>Ticket Machine: <%=originalMachineUuid%></H1>
         <!-- print error message if there is one -->
         <div style="color:red;"><%=errorMessage%></div>
         <div style="color:green;"><%=message%></div>
@@ -189,6 +215,8 @@
         <br>
        <form action="./ticketMachineConf.jsp" method="get">
            <p>The assigned station for this machine is: <%= stationName %></p>
+            <input type="hidden" name="TicketMachineUuid" value="<%=originalMachineUuid%>">
+            <input type="hidden" name="TicketMachineId" value="<%=machineId%>">
             <input type="hidden" name="action" value="removeMachineStation">
             <button type="submit" >remove ticket machine from station</button>
         </form>
