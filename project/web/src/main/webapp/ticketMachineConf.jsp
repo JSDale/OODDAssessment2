@@ -27,7 +27,8 @@
     String originalMachineUuid = request.getParameter("TicketMachineUuid");
     if(originalMachineUuid == null || originalMachineUuid.isEmpty())
     {
-        originalMachineUuid = "";
+        errorMessage = "Something went wrong with UUID";
+        System.exit(1);
     }
     
     String machineIdStr = request.getParameter("TicketMachineId");
@@ -70,7 +71,7 @@
     if(actionStr.equals("updateMachineUuid"))
     {
         String newUuid = request.getParameter("updateTicketMachineUuid");
-        if(newUuid.equals(null) || newUuid.isEmpty())
+        if(newUuid == null || newUuid.isEmpty())
         {
             errorMessage = "please enter a UUID.";
             return;
@@ -83,6 +84,31 @@
         machineDAO.deleteById(machineId);
          
         tempTicketMachine.setUuid(newUuid);
+        
+        machineDAO.save(tempTicketMachine);
+        
+        message = "Machine updated!";
+        }
+        catch(Exception ex)
+        {
+            errorMessage = "something went wrong";
+        }
+    }
+        
+        if(actionStr.equals("updateMachineStation"))
+    {
+        String newStationStr = request.getParameter("stationName");
+        String originalStationName = request.getParameter("originalStationName");
+        Station replacedStation = stationDAO.findByName(originalStationName);
+        Station replacementStation = stationDAO.findByName(newStationStr);
+        TicketMachine tempTicketMachine = new TicketMachine();
+        tempTicketMachine.setStation(replacedStation);
+        tempTicketMachine.setId(machineId);
+        tempTicketMachine.setUuid(originalMachineUuid);
+        try{
+        machineDAO.deleteById(machineId);
+         
+        tempTicketMachine.setStation(replacementStation);
         
         machineDAO.save(tempTicketMachine);
         
@@ -150,7 +176,12 @@
                     %>
                 </td>
                 <td>
-                    <button type="submit" >add ticket machine to station</button>
+                    <input type="hidden" name="TicketMachineUuid" value="<%=originalMachineUuid%>">
+                    <input type="hidden" name="TicketMachineId" value="<%=machineId%>">
+                    <input type="hidden" name="stationName" value="stationNameStr">
+                    <input type="hidden" name="originalStationName" value="<%=stationNameStr%>">
+                    <input type="hidden" name="action" value="updateMachineStation">
+                    <button type="submit">add ticket machine to station</button>
                 </td>
             </tr>
          </table>
@@ -158,6 +189,7 @@
         <br>
        <form action="./ticketMachineConf.jsp" method="get">
            <p>The assigned station for this machine is: <%= stationName %></p>
+            <input type="hidden" name="action" value="removeMachineStation">
             <button type="submit" >remove ticket machine from station</button>
         </form>
     </body>
