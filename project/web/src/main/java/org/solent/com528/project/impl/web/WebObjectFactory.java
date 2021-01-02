@@ -78,32 +78,6 @@ public class WebObjectFactory implements ServletContextListener {
         return serviceFacade;
     }
     
-    public static ServiceFacade getClientServiceFacade()
-    {
-        if (serviceFacade == null) {
-            synchronized (WebObjectFactory.class) {
-                if (serviceFacade == null) {
-
-                    LOG.debug("client web application starting");
-                    clientObjectFactory = new ClientObjectFactoryImpl();
-                    serviceFacade = clientObjectFactory.getServiceFacade();
-
-                    configurationPoller = new ConfigurationPoller(serviceFacade);
-                    // initially random uuid - can be set
-                    String ticketMachineUuid = UUID.randomUUID().toString();
-                    configurationPoller.setTicketMachineUuid(ticketMachineUuid);
-                    long initialDelay = 0;
-                    long delay = 30; // every 30 seconds
-                    LOG.debug("starting configuration poller initialDelay=" + initialDelay
-                            + ", delay=" + delay
-                            + ", ticketMachineUuid=" + ticketMachineUuid);
-                    configurationPoller.init(initialDelay, delay);
-                }
-            }
-        }
-        return serviceFacade;
-    }
-
     private static List<Station> loadDefaultStations() {
         LOG.debug("LOADING DEFAULT STATIONS");
         List<Station> defaultStationList = new ArrayList<Station>();

@@ -4,8 +4,8 @@
     Author     : Jacob
 --%>
 
+<%@page import="org.solent.com528.project.impl.webclient.WebClientObjectFactory"%>
 <%@page import="org.solent.com528.project.model.dto.PricingDetails"%>
-<%@page import="org.solent.com528.project.impl.web.WebObjectFactory"%>
 <%@page import="org.solent.com528.project.model.dao.PriceCalculatorDAO"%>
 <%@page import="org.solent.com528.project.model.service.ServiceFacade"%>
 <%@page import="java.util.Date"%>
@@ -15,6 +15,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // used to set html header autoload time. This automatically refreshes the page
+    // Set refresh, autoload time every 20 seconds
+    response.setIntHeader("Refresh", 10);
     String errorMessage = "";
     String message = "";
     
@@ -26,8 +29,7 @@
     
     String newPeakPriceStr = "";
     String newOffPeakPriceStr = "";
-    DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
-    ServiceFacade cleintServiceFacade = (ServiceFacade) WebObjectFactory.getClientServiceFacade();
+    ServiceFacade cleintServiceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
     PriceCalculatorDAO priceCalcDAO = cleintServiceFacade.getPriceCalculatorDAO();
     double currentOffPeakPriceDbl = priceCalcDAO.getOffpeakPricePerZone();
     double currentPeakPriceDbl = priceCalcDAO.getPeakPricePerZone();
