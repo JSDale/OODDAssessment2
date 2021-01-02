@@ -43,6 +43,18 @@
             errorMessage = errorMessageAction;
         }
     }
+    
+    if(actionStr.equals("deleteAllTicketMachines"))
+       {
+           try
+           {
+                machineDAO.deleteAll();
+           }
+           catch(Exception ex)
+           {
+               errorMessage = errorMessageAction;
+           }
+       }
 %>
 
 <html>
