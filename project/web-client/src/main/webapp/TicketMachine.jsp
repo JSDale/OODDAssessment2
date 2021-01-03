@@ -4,6 +4,7 @@
     Author     : Jacob
 --%>
 
+<%@page import="java.net.URL"%>
 <%@page import="org.solent.com528.project.impl.webclient.TicketLogger"%>
 <%@page import="java.util.Set"%>
 <%@page import="org.solent.com528.project.clientservice.impl.TicketEncoderImpl"%>
@@ -87,7 +88,7 @@
           TicketInformation.zonesTravelable = zoneDif;
    }
    
-     int cardNo = 0;
+    int cardNo = 0;
     try{
         cardNo = Integer.parseInt(cardNoStr);
     }
@@ -120,7 +121,10 @@
         //TicketLogger ticketLogger = new TicketLogger();
         //ticketLogger.LogTicketAsXML(encodedTicket);
         
-        ticketStr = encodedTicket; 
+        ticketStr = encodedTicket;
+        
+        TicketLogger tLogger = new TicketLogger();
+        tLogger.LogTicketAsXML(encodedTicket);
     }
    
 %>
