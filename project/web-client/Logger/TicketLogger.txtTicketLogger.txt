@@ -1,2 +1,28 @@
-2021-01-03 at 12:09:16 GMT
-test
+
+
+
+2021-01-03 at 12:16:50 GMT
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ticket>
+    <startStation>Aldgate East</startStation>
+    <cost>2.5</cost>
+    <encryptedHash>J48issRM6DnBnVhoeZ0r2n4LUPx4UrDWK1lxhKVNryy44GCTDrcY3g3NY9Co+5DdWvgkI8dL+kzJXQdtfnGECX1mX0g1ZLCvA/f4QMnYK9MNLG07vHeWVFJbQYf4ioOwSlC1zb7sFFTwi5vdIjZGQ3/DrjIv0nMEGRHdtMPZx3g=</encryptedHash>
+    <rate>OFFPEAK</rate>
+    <issueDate>2021-01-03T12:15:01Z</issueDate>
+    <numberOfZones>1</numberOfZones>
+    <Id>58d3566c-91b5-41ab-89b8-8147aee772dc</Id>
+</ticket>
+
+
+
+2021-01-03 at 12:17:25 GMT
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ticket>
+    <startStation>Aldgate</startStation>
+    <cost>2.5</cost>
+    <encryptedHash>ESvTOgGgkjzgC00TyE0cAm5wEJCHs43Z2o5hIl7k92WYxvjp8J7Hc1pApJ9mzXPPK6KXpTQ2JHiLHuJL3fHTRTBxHhDreK0Fp+53Nc0lJflu5qA9hoqfGtx7AbIytLnv/VPNLgLjxSdgP9v2QI11gI5GdffByPWQGWf5uQERi2k=</encryptedHash>
+    <rate>OFFPEAK</rate>
+    <issueDate>2021-01-03T12:17:18Z</issueDate>
+    <numberOfZones>1</numberOfZones>
+    <Id>ed204fb0-6e51-44da-be55-10b133e0e0c9</Id>
+</ticket>

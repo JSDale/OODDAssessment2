@@ -123,8 +123,8 @@
         
         ticketStr = encodedTicket;
         
-        TicketLogger tLogger = new TicketLogger();
-        tLogger.LogTicketAsXML(encodedTicket);
+        TicketLogger ticketLogger = new TicketLogger();
+        ticketLogger.LogTicketAsXML(encodedTicket);
     }
    
 %>
