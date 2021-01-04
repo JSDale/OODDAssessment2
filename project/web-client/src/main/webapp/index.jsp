@@ -1,3 +1,8 @@
+<%
+    String machineUuid = "test";
+%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -23,8 +28,11 @@ and open the template in the editor.
         </p>
         <p> click on <a href="../projectfacadeweb-client/changeConfig.jsp">changeConfig.jsp</a> to change client ticket machine configuration
         </p>
-        <p> click on <a href="../projectfacadeweb-client/TicketMachine.jsp">ticketMachine.jsp</a> to buy a ticket
-        </p>
+        <form action="../projectfacadeweb-client/TicketMachine.jsp" method="get">
+        <p> click on the buy a ticket button to buy a ticket </p>
+        <input type="hidden" name="ticketMachineUuid" value ="<%=machineUuid%>">
+        <button>buy a ticket</button>
+        </form>
         <p> click on <a href="../projectfacadeweb-client/openGate.jsp">openGate.jsp</a> to leave the station
         </p>
         <p> click on <a href="../projectfacadeweb-client/Scheduler.jsp">Scheduler.jsp</a> to edit pricing(s).

@@ -121,7 +121,7 @@
             }
             else
             {
-                errorMessage = "station doesn't exsist or there is a problem with station UUID.";
+                errorMessage = "station doesn't exsist, or there is a problem with station UUID.";
             }
 
     }
