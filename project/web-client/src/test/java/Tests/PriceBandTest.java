@@ -14,6 +14,8 @@ import org.solent.com528.project.model.dao.PriceCalculatorDAO;
 import org.solent.com528.project.model.dto.PriceBand;
 import org.solent.com528.project.model.dto.PricingDetails;
 import org.solent.com528.project.model.dto.Rate;
+import static org.solent.com528.project.model.dto.Rate.OFFPEAK;
+import static org.solent.com528.project.model.dto.Rate.PEAK;
 import org.solent.com528.project.model.service.ServiceFacade;
 
 /**
@@ -38,13 +40,13 @@ public class PriceBandTest {
     
     @Test
     //this was used to better my understanding of how to save new price bands.
-    public void testSaveNewPriceBand()
+    public void testWherePriceBandSaved()
     {
         ServiceFacade cleintServiceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
         PriceCalculatorDAO priceCalcDAO = cleintServiceFacade.getPriceCalculatorDAO();
         PricingDetails pd = priceCalcDAO.getPricingDetails();
-        Rate offPeakRate = Rate.OFFPEAK;
-        Rate peakRate = Rate.PEAK;
+        Rate offPeakRate = OFFPEAK;
+        Rate peakRate = PEAK;
         PriceBand pb = new PriceBand();
         pb.setHour(15);
         pb.setMinutes(0);
@@ -53,24 +55,6 @@ public class PriceBandTest {
         pbList.add(pb);
         pd.setPriceBandList(pbList);
         priceCalcDAO.savePricingDetails(pd);
-    }
-    
-    @Test
-    public void testDeletePriceBand()
-    {
-        ServiceFacade cleintServiceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
-        PriceCalculatorDAO priceCalcDAO = cleintServiceFacade.getPriceCalculatorDAO();
-        PricingDetails pd = priceCalcDAO.getPricingDetails();
-        Rate offPeakRate = Rate.OFFPEAK;
-        Rate peakRate = Rate.PEAK;
-        PriceBand pb = new PriceBand();
-        pb.setHour(15);
-        pb.setMinutes(0);
-        pb.setRate(peakRate);
-        List<PriceBand> pbList = pd.getPriceBandList();
-        pbList.add(pb);
-        pd.setPriceBandList(pbList);
-        priceCalcDAO.deletePriceBand(pb);
     }
 
 }

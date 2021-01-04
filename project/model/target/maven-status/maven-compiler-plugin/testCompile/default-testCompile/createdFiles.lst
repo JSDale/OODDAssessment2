@@ -3,4 +3,5 @@ org\solent\com528\project\model\dto\test\TicketMachineConfigReplyMessageJaxbTest
 org\solent\com528\project\clientservice\impl\test\TicketEncoderImplTest.class
 org\solent\com528\project\impl\dao\jaxb\test\PriceCalculatorDAOJaxbImplTest.class
 org\solent\com528\project\impl\dao\jaxb\test\StationDAOJaxbImplTest.class
+org\solent\com528\project\clientservice\impl\test\PriceBandTest.class
 org\solent\com528\project\model\dto\test\TicketModelJaxbTest.class
