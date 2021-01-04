@@ -27,7 +27,8 @@ import org.solent.com528.project.model.dto.StationsList;
  *
  * @author cgallen
  */
-public class StationDAOJaxbImpl implements StationDAO {
+public class StationDAOJaxbImpl //implements StationDAO 
+{
 
     private final static Logger LOG = LogManager.getLogger(StationDAOJaxbImpl.class);
 
@@ -74,10 +75,10 @@ public class StationDAOJaxbImpl implements StationDAO {
         save();
     }
 
-    @Override
+    /*@Override
     public synchronized List<Station> findAll() {
-        return new ArrayList(stationTreeMap.values());
-    }
+    return new ArrayList(stationTreeMap.values());
+    }*/
 
     @Override
     public synchronized List<Station> findByZone(Integer zone) {

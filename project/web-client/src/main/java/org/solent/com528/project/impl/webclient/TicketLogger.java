@@ -70,6 +70,7 @@ public class TicketLogger {
         {
             FileWriter fileWriter = new FileWriter(logger, true);
             fileWriter.append("\n\n\n" + getCurrentTime() +"\n" + encodedTicket);
+            //fileWriter.write("\n\n\n" + getCurrentTime() +"\n" + encodedTicket);
             fileWriter.close();
         }
         catch(Exception ex)
