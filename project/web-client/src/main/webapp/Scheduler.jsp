@@ -34,6 +34,7 @@
     double currentOffPeakPriceDbl = priceCalcDAO.getOffpeakPricePerZone();
     double currentPeakPriceDbl = priceCalcDAO.getPeakPricePerZone();
     
+    
     String currentOffPeakPriceStr = null;
     String currentPeakPriceStr = null;
     try
@@ -139,6 +140,6 @@
                 </tr>
             </table>
         </form>
-        
+    <p>Click <a href="timeScheduler.jsp">here</a> to change the times of Peak and Off Peak</p>
     </body>
 </html>
