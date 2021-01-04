@@ -118,9 +118,6 @@
         String hash = encodedTicketSplit[0];
         ticket.setEncryptedHash(hash);
         
-        //TicketLogger ticketLogger = new TicketLogger();
-        //ticketLogger.LogTicketAsXML(encodedTicket);
-        
         ticketStr = encodedTicket;
         
         TicketLogger ticketLogger = new TicketLogger();
