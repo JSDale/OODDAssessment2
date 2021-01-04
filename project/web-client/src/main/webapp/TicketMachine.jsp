@@ -3,7 +3,7 @@
     Created on : 22 Dec 2020, 10:38:27
     Author     : Jacob
 --%>
-
+<%@page import="org.solent.com528.project.model.dto.TicketMachineConfig"%>
 <%@page import="java.net.URL"%>
 <%@page import="org.solent.com528.project.impl.webclient.TicketLogger"%>
 <%@page import="java.util.Set"%>
@@ -26,10 +26,16 @@
 <%
     String errorMessage = "";
     ServiceFacade serviceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
-    StationDAO stationDAO = serviceFacade.getStationDAO();
     PriceCalculatorDAO priceCalcDAO = serviceFacade.getPriceCalculatorDAO();
-    List<Station> stationList =  stationDAO.findAll();
+    String ticketMachineUuid = "test";
+    TicketMachineConfig ticketMachineConf = serviceFacade.getTicketMachineConfig(ticketMachineUuid);
+    List<Station> stationList = ticketMachineConf.getStationList();
     String ticketStr = "";
+    String actionStr = request.getParameter("action");
+    if(actionStr == null || actionStr.isEmpty())
+    {
+        actionStr = "";
+    }
 
     // pull in standard date format
     DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
@@ -41,7 +47,7 @@
 
     String validToStr = df.format(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
         
-    String startStationStr = request.getParameter("startStation");
+    String startStationStr = ticketMachineConf.getStationName();
     if (startStationStr == null || startStationStr.isEmpty()) {
         startStationStr = "UNDEFINED";
     }
@@ -60,77 +66,98 @@
     }
     
     if (startStationStr != "UNDEFINED" && endStationStr != "UNDEFINED") {
-           Date validFromDate = df.parse(validFromStr);
+            Date validFromDate = df.parse(validFromStr);
+            
+            boolean stationExists = false;
+            double pricePerZone = priceCalcDAO.getPricePerZone(validFromDate);
+            Station endStation = null;
+            
+            for(Station station : stationList)
+            {
+                if(station.getName().equals(endStationStr))
+                {
+                    endStation = station;
+                    stationExists = true;
+                }
+            }
+            
+            if(stationExists)
+            {
+                int startStationZone =  ticketMachineConf.getStationZone();
+                int endStationZone =  endStation.getZone();
+                int zoneDif = 1;
+                if(startStationZone > endStationZone)
+                {
+                     zoneDif = startStationZone - endStationZone;
+                }
+                else if(startStationZone < endStationZone)
+                {
+                      zoneDif = endStationZone - startStationZone;
+                }
+                if(zoneDif == 0){ zoneDif = 1; }
+                double price = zoneDif * pricePerZone;
+                priceStr = "£"+price;
 
-           double pricePerZone = priceCalcDAO.getPricePerZone(validFromDate);
-
-          Station startStation = stationDAO.findByName(startStationStr);
-          int startStationZone =  startStation.getZone();
-
-           Station endStation = stationDAO.findByName(endStationStr);
-          int endStationZone =  endStation.getZone();
-          int zoneDif = 1;
-          if(startStationZone > endStationZone)
-          {
-               zoneDif = startStationZone - endStationZone;
-          }
-          else if(startStationZone < endStationZone)
-          {
-                zoneDif = endStationZone - startStationZone;
-          }
-          
-          double price = zoneDif * pricePerZone;
-          priceStr = "Â£"+price;
-          
-          TicketInformation.StartStation = startStationStr;
-          TicketInformation.validFrom = validFromDate;
-          TicketInformation.price = price;
-          TicketInformation.zonesTravelable = zoneDif;
-   }
+                TicketInformation.StartStation = startStationStr;
+                TicketInformation.validFrom = validFromDate;
+                TicketInformation.price = price;
+                TicketInformation.zonesTravelable = zoneDif;
+            }
+            else
+            {
+                errorMessage = "station doesn't exsist";
+            }
+           
+    }
    
-    int cardNo = 0;
-    try{
-        cardNo = Integer.parseInt(cardNoStr);
-    }
-    catch(Exception ex)
+    if(actionStr.equals("buyTicket"))
     {
-        cardNo = 0;
-    }
-    boolean cardIsReal = false;
-    if(cardNoStr.length() == 16)
-    {
-        cardIsReal = true;
+        long cardNo = 0;
+        try{
+            cardNo = Long.parseLong(cardNoStr);
+        }
+        catch(Exception ex)
+        {
+            errorMessage = "card is invalid parse error";
+           System.out.println("________________________________________________" + ex.getMessage() + "_______________________________________________________"+cardNoStr);
+        }
+        boolean cardIsReal = false;
+        if(cardNoStr.length() == 16 && cardNo != 0)
+        {
+            cardIsReal = true;
+        }
+    
+        if(cardIsReal)
+        {
+            Rate rate = priceCalcDAO.getRate(TicketInformation.validFrom);
+            Ticket ticket = new Ticket();
+            ticket.setCost(TicketInformation.price);
+            ticket.setIssueDate(TicketInformation.validFrom);
+            ticket.setStartStation(TicketInformation.StartStation);
+            ticket.setRate(rate);
+            ticket.setId();
+            ticket.setNumberOfZones(TicketInformation.zonesTravelable);
+            String encodedTicket =  TicketEncoderImpl.encodeTicket(ticket);
+            String[] encodedTicketSplit = encodedTicket.split("<encryptedHash>");
+            encodedTicketSplit = encodedTicketSplit[1].split("</encryptedHash");
+            String hash = encodedTicketSplit[0];
+            ticket.setEncryptedHash(hash);
+
+            ticketStr = encodedTicket;
+
+            TicketLogger ticketLogger = new TicketLogger();
+            ticketLogger.LogTicketAsXML(encodedTicket);
+        }
+        else
+        {
+            errorMessage = "card is invalid";
+        }
     }
     
-    if(cardIsReal)
-    {
-        Rate rate = priceCalcDAO.getRate(TicketInformation.validFrom);
-        Ticket ticket = new Ticket();
-        ticket.setCost(TicketInformation.price);
-        ticket.setIssueDate(TicketInformation.validFrom);
-        ticket.setStartStation(TicketInformation.StartStation);
-        ticket.setRate(rate);
-        ticket.setId();
-        ticket.setNumberOfZones(TicketInformation.zonesTravelable);
-        String encodedTicket =  TicketEncoderImpl.encodeTicket(ticket);
-        String[] encodedTicketSplit = encodedTicket.split("<encryptedHash>");
-        encodedTicketSplit = encodedTicketSplit[1].split("</encryptedHash");
-        String hash = encodedTicketSplit[0];
-        ticket.setEncryptedHash(hash);
-        
-        //TicketLogger ticketLogger = new TicketLogger();
-        //ticketLogger.LogTicketAsXML(encodedTicket);
-        
-        ticketStr = encodedTicket;
-        
-        TicketLogger ticketLogger = new TicketLogger();
-        ticketLogger.LogTicketAsXML(encodedTicket);
-    }
    
 %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -143,25 +170,6 @@
 
         <form action="./TicketMachine.jsp"  method="post">
             <table>
-                <tr>
-                    <td>Start Station:</td>
-                    <td>
-                        <select name="startStation" id="cboStartStation">
-                            <option value="UNDEFINED">--Select--</option>
-                             <%
-                                for (Station station : stationList) {
-                            %>
-                           <option value="<%=station.getName()%>"><%=station.getName()%></option>
-                            <%
-                                }
-                            %>
-                            <option value="UNDEFINED">--Select--</option>
-                        </select>
-                        <%
-                            startStationStr = request.getParameter("startStation");
-                        %>
-                    </td>
-                </tr>
                 <tr>
                     <td>End Station:</td>
                     <td>
@@ -185,7 +193,7 @@
             </table>
             <button type="submit">Checkout</button>
         </form> 
-        <h1>Checkout</h1><form action="./TicketMachine.jsp"  method="post">
+        <h1>Checkout</h1><form action="./TicketMachine.jsp"  method="get">
             <table>
                 <tr>
                     <td>Price:</td>
@@ -196,7 +204,7 @@
                     <td><input type="text" name="cardNo" value="<%=cardNoStr%>"></td>
                 </tr>
             </table>
-            <button type="submit" >Buy Ticket</button>
+            <button type="submit" name="action" value="buyTicket" >Buy Ticket</button>
         </form>
         <h2>Printed Ticket</h2>
         <textarea id="ticketTextArea" rows="15" cols="150" readonly><%=ticketStr%></textarea>

@@ -25,7 +25,7 @@
     ServiceFacade serviceFacade = (ServiceFacade) WebObjectFactory.getServiceFacade();
     StationDAO stationDAO = serviceFacade.getStationDAO();
     Set<Integer> zones = stationDAO.getAllZones();
-    List<Station> stationList = new ArrayList<Station>();
+    List<Station> stationList = stationDAO.findAll();
 
     // accessing request parameters
     String actionStr = request.getParameter("action");
