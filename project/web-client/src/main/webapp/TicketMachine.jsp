@@ -27,8 +27,8 @@
     String errorMessage = "";
     ServiceFacade serviceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
     PriceCalculatorDAO priceCalcDAO = serviceFacade.getPriceCalculatorDAO();
-    String ticketMachineUuid = request.getParameter("ticketMachineUuid");
-    if(ticketMachineUuid == null || ticketMachineUuid.isEmpty())
+    String ticketMachineUuid = WebClientObjectFactory.getTicketMachineUuid();
+    if(ticketMachineUuid.isEmpty())
     {
         ticketMachineUuid = null;
     }
@@ -58,13 +58,11 @@
         validFromStr = df.format(new Date());
     }
     
-    String startStationStr = "";
+    String startStationStr = "UNDEFINED";
     if(!stationList.isEmpty())
     {
         ticketMachineConf.getStationName();
-        if (startStationStr == null || startStationStr.isEmpty()) {
-        startStationStr = "UNDEFINED";
-        }
+        startStationStr = ticketMachineConf.getStationName();
     }
     
 
@@ -81,7 +79,7 @@
         cardNoStr ="";
     }
 
-    if (startStationStr != "UNDEFINED" || startStationStr !="" && endStationStr != "UNDEFINED") {
+    if (startStationStr != "UNDEFINED" && endStationStr != "UNDEFINED") {
             Date validFromDate = df.parse(validFromStr);
 
             boolean stationExists = false;
@@ -178,6 +176,7 @@
         <title>Purchase Ticket</title>
     </head>
     <body>
+        <h1>Station: <%=startStationStr%></h1>
         <h1>Generate a New Ticket</h1>
         <!-- print error message if there is one -->
         <div style="color:red;"><%=errorMessage%></div>

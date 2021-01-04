@@ -1,7 +1,3 @@
-<%
-    String machineUuid = "test";
-%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -28,11 +24,7 @@ and open the template in the editor.
         </p>
         <p> click on <a href="../projectfacadeweb-client/changeConfig.jsp">changeConfig.jsp</a> to change client ticket machine configuration
         </p>
-        <form action="../projectfacadeweb-client/TicketMachine.jsp" method="get">
-        <p> click on the buy a ticket button to buy a ticket </p>
-        <input type="hidden" name="ticketMachineUuid" value ="<%=machineUuid%>">
-        <button>buy a ticket</button>
-        </form>
+        <p> click on <a href="../projectfacadeweb-client/TicketMachine.jsp">TicketMachine.jso</a> to buy a ticket, ensure you have configured the machine first in the above link.</p>
         <p> click on <a href="../projectfacadeweb-client/openGate.jsp">openGate.jsp</a> to leave the station
         </p>
         <p> click on <a href="../projectfacadeweb-client/Scheduler.jsp">Scheduler.jsp</a> to edit pricing(s).
