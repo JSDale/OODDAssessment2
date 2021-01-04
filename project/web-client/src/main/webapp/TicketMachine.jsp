@@ -27,9 +27,22 @@
     String errorMessage = "";
     ServiceFacade serviceFacade = (ServiceFacade) WebClientObjectFactory.getServiceFacade();
     PriceCalculatorDAO priceCalcDAO = serviceFacade.getPriceCalculatorDAO();
-    String ticketMachineUuid = "test";
+    String ticketMachineUuid = request.getParameter("ticketMachineUuid");
+    if(ticketMachineUuid == null || ticketMachineUuid.isEmpty())
+    {
+        ticketMachineUuid = null;
+    }
+    
     TicketMachineConfig ticketMachineConf = serviceFacade.getTicketMachineConfig(ticketMachineUuid);
-    List<Station> stationList = ticketMachineConf.getStationList();
+    List<Station> stationList = new ArrayList();
+    try
+    {
+        stationList = ticketMachineConf.getStationList();
+    }
+    catch(Exception ex)
+    {
+        errorMessage = "Ticket machine UUID is invalid";
+    }
     String ticketStr = "";
     String actionStr = request.getParameter("action");
     if(actionStr == null || actionStr.isEmpty())
@@ -39,19 +52,22 @@
 
     // pull in standard date format
     DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
-    
+
      String validFromStr = request.getParameter("validFrom");
     if (validFromStr == null || validFromStr.isEmpty()) {
         validFromStr = df.format(new Date());
     }
-
-    String validToStr = df.format(new Date(new Date().getTime() + 1000 * 60 * 60 * 24));
-        
-    String startStationStr = ticketMachineConf.getStationName();
-    if (startStationStr == null || startStationStr.isEmpty()) {
+    
+    String startStationStr = "";
+    if(!stationList.isEmpty())
+    {
+        ticketMachineConf.getStationName();
+        if (startStationStr == null || startStationStr.isEmpty()) {
         startStationStr = "UNDEFINED";
+        }
     }
     
+
     String endStationStr = request.getParameter("endStation");
     if (endStationStr == null || endStationStr.isEmpty()) {
         endStationStr = "UNDEFINED";
@@ -64,14 +80,14 @@
     if(cardNoStr == null || cardNoStr.isEmpty()){
         cardNoStr ="";
     }
-    
-    if (startStationStr != "UNDEFINED" && endStationStr != "UNDEFINED") {
+
+    if (startStationStr != "UNDEFINED" || startStationStr !="" && endStationStr != "UNDEFINED") {
             Date validFromDate = df.parse(validFromStr);
-            
+
             boolean stationExists = false;
             double pricePerZone = priceCalcDAO.getPricePerZone(validFromDate);
             Station endStation = null;
-            
+
             for(Station station : stationList)
             {
                 if(station.getName().equals(endStationStr))
@@ -80,7 +96,7 @@
                     stationExists = true;
                 }
             }
-            
+
             if(stationExists)
             {
                 int startStationZone =  ticketMachineConf.getStationZone();
@@ -105,11 +121,11 @@
             }
             else
             {
-                errorMessage = "station doesn't exsist";
+                errorMessage = "station doesn't exsist or there is a problem with station UUID.";
             }
-           
+
     }
-   
+
     if(actionStr.equals("buyTicket"))
     {
         long cardNo = 0;
@@ -119,14 +135,13 @@
         catch(Exception ex)
         {
             errorMessage = "card is invalid parse error";
-           System.out.println("________________________________________________" + ex.getMessage() + "_______________________________________________________"+cardNoStr);
         }
         boolean cardIsReal = false;
         if(cardNoStr.length() == 16 && cardNo != 0)
         {
             cardIsReal = true;
         }
-    
+
         if(cardIsReal)
         {
             Rate rate = priceCalcDAO.getRate(TicketInformation.validFrom);
@@ -153,7 +168,6 @@
             errorMessage = "card is invalid";
         }
     }
-    
    
 %>
 
