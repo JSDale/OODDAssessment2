@@ -24,22 +24,42 @@
     TicketMachine ticketMachine = new TicketMachine();
     Station tempStation = null;
     
-    String originalMachineUuid = request.getParameter("TicketMachineUuid");
-    try{
-        if(originalMachineUuid == null || originalMachineUuid.isEmpty())
+    String actionStr = request.getParameter("action");
+    if(actionStr == null || actionStr.isEmpty())
+    {
+        actionStr = "";
+    }
+    
+    String originalMachineUuid = null;
+    try
+    {
+        if(actionStr.equals("createTicketMachine"))
         {
-            originalMachineUuid = "";
+            originalMachineUuid = request.getParameter("TicketMachineUuid");
+                    if(originalMachineUuid == null || originalMachineUuid.isEmpty())
+                    {
+                        originalMachineUuid = "";
+                    }
+        }
+        else
+        {
+            originalMachineUuid = request.getParameter("originalUuid");
+            if(originalMachineUuid == null || originalMachineUuid.isEmpty())
+            {
+                        throw new Exception("UUID Error");
+            }
         }
     }
     catch(Exception ex)
-        {
-            errorMessage = "something went wrong assigning UUID.";
-        }
+    {
+        errorMessage = "Error assigning UUID";
+    }
     
     String machineIdStr = request.getParameter("TicketMachineId");
     if(machineIdStr == null || machineIdStr.isEmpty())
     {
-        machineIdStr = "-1";
+        Long tempId = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+        machineIdStr = tempId.toString();
     }
     Long machineId= Long.parseLong(machineIdStr);
     
@@ -54,20 +74,15 @@
         tempStation = stationDAO.findByName(stationNameStr);
     }
     
-    String actionStr = request.getParameter("action");
-    if(actionStr == null || actionStr.isEmpty())
-    {
-        actionStr = "";
-    }
-    
     if(actionStr.equals("createTicketMachine"))
     {
         TicketMachine tempMachine = new TicketMachine();
-        Long id = UUID.randomUUID().getLeastSignificantBits() & Long.MAX_VALUE;
+        Long id = Long.parseLong(machineIdStr);
         String uuid = UUID.randomUUID().toString();
         tempMachine.setId(id);
         tempMachine.setUuid(uuid);
         tempMachine.setStation(null);
+        originalMachineUuid = uuid;
         
         machineDAO.save(tempMachine);
         message = "new ticket machine created, assign a station to it please.";
@@ -88,19 +103,29 @@
         }
         TicketMachine tempTicketMachine = new TicketMachine();
         tempTicketMachine.setStation(tempStation);
-        tempTicketMachine.setId(machineId);
+        //tempTicketMachine.setId(machineId);
         try{
-            machineDAO.deleteById(machineId);
-
-            tempTicketMachine.setUuid(newUuid);
-
-            machineDAO.save(tempTicketMachine);
-
-            message = "Machine updated!";
+            List<TicketMachine> tmList = machineDAO.findAll();
+            boolean updated = false;
+            for(TicketMachine tempMachine : tmList)
+            {
+                if(tempMachine.getUuid().equals(originalMachineUuid))
+                {
+                    machineDAO.delete(tempMachine);
+                    tempTicketMachine.setUuid(newUuid);
+                    machineDAO.save(tempTicketMachine);
+                    message = "Machine updated!";
+                    updated = true;
+                }
+            }
+            if(!updated)
+            {
+                throw new Exception("error chaning uuid");
+            }
         }
         catch(Exception ex)
         {
-            errorMessage = "something went wrong";
+            errorMessage = "something went wrong" +"-----"+ex.getLocalizedMessage();
         }
     }
         
@@ -166,7 +191,7 @@
         <br>
         <!-- if you used method post the url parameters would be hidden -->
         <form action="./ticketMachineConf.jsp" method="get">
-            <p>Ticket Machine UUID: <input type="text" size="36" name="updateTicketMachineUuid" value="<%=originalMachineUuid%>">
+            <p>Ticket Machine UUID: <input type="text" size="50" name="updateTicketMachineUuid" value="<%=originalMachineUuid%>">
                 <input type="hidden" name="TicketMachineUuid" value="<%=ticketMachine.getUuid()%>">
                 <input type="hidden" name="originalUuid" value="<%=originalMachineUuid%>">
                 <input type="hidden" name="TicketMachineId" value="<%=machineId%>">

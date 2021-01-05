@@ -208,3 +208,17 @@
     <numberOfZones>3</numberOfZones>
     <Id>f075a770-e650-4eee-816f-e38784b7afde</Id>
 </ticket>
+
+
+
+2021-01-05 at 10:37:43 GMT
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ticket>
+    <startStation>Abbey Road</startStation>
+    <cost>5.0</cost>
+    <encryptedHash>PfWgQY2eocroWhmM8uo3KA2q8xLHrLqzqZ5SyGhRn5G7s49spbpygFDJ3D2sFjIvqH+MN9JugIRFsFlyQPOLzBxWO7PokSHZCCedQ9Ve/SerYHLjEYeWEtowm1ywS9HadGZYtVEC1VTC3O4p7/V78I/0OqK0xijSApWcFYKygQE=</encryptedHash>
+    <rate>PEAK</rate>
+    <issueDate>2021-01-05T10:31:14Z</issueDate>
+    <numberOfZones>1</numberOfZones>
+    <Id>deb59f35-ef09-4e6c-bbae-0ebae2136663</Id>
+</ticket>
