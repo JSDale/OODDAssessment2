@@ -33,6 +33,9 @@
         ticketMachineUuid = null;
     }
     
+    double offPeakPricePerZone = priceCalcDAO.getOffpeakPricePerZone();
+    double peakPricePerZone = priceCalcDAO.getPeakPricePerZone();
+    
     TicketMachineConfig ticketMachineConf = serviceFacade.getTicketMachineConfig(ticketMachineUuid);
     List<Station> stationList = new ArrayList();
     try

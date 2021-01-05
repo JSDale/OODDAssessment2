@@ -94,8 +94,9 @@ public class TicketMachineRestService {
 
             // YOU WOULD GET THIS FROM THE DAO'S IN THE SERVICE FACADE            
             PricingDetails pricingDetails = new PricingDetails();
-            pricingDetails.setOffpeakPricePerZone(2.50);
-            pricingDetails.setPeakPricePerZone(5.00);
+            PriceCalculatorDAO priceCalcDAO = serviceFacade.getPriceCalculatorDAO();
+            pricingDetails.setOffpeakPricePerZone(priceCalcDAO.getOffpeakPricePerZone());
+            pricingDetails.setPeakPricePerZone(priceCalcDAO.getPeakPricePerZone());
             List<PriceBand> priceBandList = new ArrayList();
             pricingDetails.setPriceBandList(priceBandList);
 
@@ -121,16 +122,6 @@ public class TicketMachineRestService {
             // STATION LIST
             
             List<Station> stationList = stationDAO.findAll();
-            String tempStationName = "";
-            for(int i = 0; i < stationList.size(); i++)
-            {
-                Station tempStation = stationList.get(i);
-                if(tempStationName.equals(tempStation.getName()))
-                {
-                    stationList.remove(tempStation);
-                }
-                tempStationName = tempStation.getName();
-            }
             
 //            List<Station> stationList = new ArrayList();
 //            Station station = new Station();
