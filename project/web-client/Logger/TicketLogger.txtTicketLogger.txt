@@ -180,3 +180,31 @@
     <numberOfZones>2</numberOfZones>
     <Id>d790c9dd-0577-4f72-9876-4758bf5ec212</Id>
 </ticket>
+
+
+
+2021-01-05 at 10:30:46 GMT
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ticket>
+    <startStation>Abbey Road</startStation>
+    <cost>5.0</cost>
+    <encryptedHash>l/YFXD7TA6TPpJiSPwzNsM2wSnXXJfp2WspZ2W3cD7HqtsRoAaZJhl5O1bsZ1416+6YmeZgsHi8Lw7uSORASMaTDQd8a9onKRT3L11LKU4PMFx6pS+P7N8mYZF2iNckdtyu8+omHNBUiyt2rqFcBqUvmM07MHyRol3cQBQJHVHc=</encryptedHash>
+    <rate>PEAK</rate>
+    <issueDate>2021-01-05T10:26:11Z</issueDate>
+    <numberOfZones>1</numberOfZones>
+    <Id>3b17eefa-b0b1-42bf-bc24-c718bd7935d9</Id>
+</ticket>
+
+
+
+2021-01-05 at 10:31:14 GMT
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ticket>
+    <startStation>Abbey Road</startStation>
+    <cost>15.0</cost>
+    <encryptedHash>Ss0S5zf1S1RTqr1WZiopINYuo/CXZcei618sKCn3GHUOqqeroyrDBBkz1wRILiJZIXpVPlI9U5g0T0vuZlieW1WwB6XS0i+j7896hQWKK/jm1Yuz3MoVKemhYhSucHA7P6w1SJEoaC08VSmH18mDJQf9uo0rgF5BD3efQzbLzR4=</encryptedHash>
+    <rate>PEAK</rate>
+    <issueDate>2021-01-05T10:30:46Z</issueDate>
+    <numberOfZones>3</numberOfZones>
+    <Id>f075a770-e650-4eee-816f-e38784b7afde</Id>
+</ticket>

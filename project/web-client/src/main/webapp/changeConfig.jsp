@@ -28,13 +28,13 @@
     }
     String updateUuidStr = request.getParameter("updateUuid");
 
-    if ("changeTicketMachineUuid".equals(actionStr)) {
-        WebClientObjectFactory.setTicketMachineUuid(updateUuidStr);
-    }
-
     String stationName = WebClientObjectFactory.getStationName();
     Integer stationZone = WebClientObjectFactory.getStationZone();
-    String ticketMachineUuid = WebClientObjectFactory.getTicketMachineUuid();
+    String ticketMachineUuid = request.getParameter("updateUuid");
+    if(ticketMachineUuid == null || ticketMachineUuid.isEmpty())
+    {
+        WebClientObjectFactory.getTicketMachineUuid();
+    }
     Date lastUpdate = WebClientObjectFactory.getLastClientUpdateTime();
     Date lastUpdateAttempt = WebClientObjectFactory.getLastClientUpdateAttempt();
     String lastUpdateStr = (lastUpdate==null) ? "not known" : lastUpdate.toString();
@@ -42,10 +42,17 @@
     
     if(actionStr.equals("changeTicketMachineUuid"))
     {
-        TicketMachineConfig ticketMachineConfig = serviceFacade.getTicketMachineConfig(ticketMachineUuid);
-        stationName = ticketMachineConfig.getStationName();
-        stationZone = ticketMachineConfig.getStationZone();
-        WebClientObjectFactory.setTicketMachineUuid(ticketMachineUuid);
+        try
+        {
+            TicketMachineConfig ticketMachineConfig = serviceFacade.getTicketMachineConfig(ticketMachineUuid);
+            stationName = ticketMachineConfig.getStationName();
+            stationZone = ticketMachineConfig.getStationZone();
+            WebClientObjectFactory.setTicketMachineUuid(ticketMachineUuid);
+        }
+        catch(Exception ex)
+        {
+            errorMessage = "Machine couldn't update. Check that the UUID exists.";
+        }
     }
 
 %>

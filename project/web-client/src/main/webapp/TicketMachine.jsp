@@ -53,7 +53,7 @@
     // pull in standard date format
     DateFormat df = new SimpleDateFormat(DateTimeAdapter.DATE_FORMAT);
 
-     String validFromStr = request.getParameter("validFrom");
+    String validFromStr = request.getParameter("validFrom");
     if (validFromStr == null || validFromStr.isEmpty()) {
         validFromStr = df.format(new Date());
     }
@@ -80,8 +80,20 @@
     }
 
     if (startStationStr != "UNDEFINED" && endStationStr != "UNDEFINED") {
-            Date validFromDate = df.parse(validFromStr);
-
+            Date validFromDate =null;
+            boolean dateTimeValid = false;
+            try
+            {
+                validFromDate = df.parse(validFromStr);
+                dateTimeValid = true;
+            }
+            catch(Exception ex)
+            {
+                errorMessage = "The Date Time is invalid";
+            }
+            
+            if(dateTimeValid)
+            {
             boolean stationExists = false;
             double pricePerZone = priceCalcDAO.getPricePerZone(validFromDate);
             Station endStation = null;
@@ -121,6 +133,7 @@
             {
                 errorMessage = "station doesn't exsist, or there is a problem with station UUID.";
             }
+        }       
 
     }
 
