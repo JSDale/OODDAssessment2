@@ -30,23 +30,23 @@
         actionStr = "";
     }
     
-    String originalMachineUuid = null;
+    String originalMachineUuid = "";
     try
     {
-        if(actionStr.equals("createTicketMachine"))
-        {
-            originalMachineUuid = request.getParameter("TicketMachineUuid");
-                    if(originalMachineUuid == null || originalMachineUuid.isEmpty())
-                    {
-                        originalMachineUuid = "";
-                    }
-        }
-        else
+        if(actionStr.equals("updateMachineUuid"))
         {
             originalMachineUuid = request.getParameter("originalUuid");
             if(originalMachineUuid == null || originalMachineUuid.isEmpty())
             {
                         throw new Exception("UUID Error");
+            }
+        }
+        else
+        {
+            originalMachineUuid = request.getParameter("TicketMachineUuid");
+            if(originalMachineUuid == null || originalMachineUuid.isEmpty())
+            {
+                originalMachineUuid = "";
             }
         }
     }
@@ -116,6 +116,7 @@
                     machineDAO.save(tempTicketMachine);
                     message = "Machine updated!";
                     updated = true;
+                    originalMachineUuid = newUuid;
                 }
             }
             if(!updated)
@@ -137,39 +138,49 @@
         tempTicketMachine.setId(machineId);
         tempTicketMachine.setUuid(originalMachineUuid);
         try{
-        machineDAO.deleteById(machineId);
-         
-        tempTicketMachine.setStation(replacementStation);
-        
-        machineDAO.save(tempTicketMachine);
-        
-        message = "Machine updated!";
+            List<TicketMachine> tmList = machineDAO.findAll();
+            boolean updated = false;
+            for(TicketMachine tempMachine : tmList)
+            {
+                if(tempMachine.getUuid().equals(originalMachineUuid))
+                {
+                    machineDAO.delete(tempMachine);
+                    tempTicketMachine.setStation(replacementStation);
+                    machineDAO.save(tempTicketMachine);
+                    message = "Machine station updated!";
+                    updated = true;
+                }
+            }
+            if(!updated)
+            {
+                throw new Exception("error chaning station");
+            }
         }
-        catch(Exception ex)
-        {
-            errorMessage = "something went wrong";
+   catch(Exception ex)
+   {
+       errorMessage = "something went wrong" +"-----"+ex.getLocalizedMessage();
+   }
         }
-    }
     
-     if(actionStr.equals("removeMachineStation"))
-    {
-        TicketMachine tempTicketMachine = new TicketMachine();
-        tempTicketMachine.setId(machineId);
-        tempTicketMachine.setUuid(originalMachineUuid);
-        try{
-        machineDAO.deleteById(machineId);
-         
-        tempTicketMachine.setStation(tempStation);
-        
-        machineDAO.save(tempTicketMachine);
-        
-        message = "Machine updated!";
-        }
-        catch(Exception ex)
-        {
-            errorMessage = "something went wrong";
-        }
-    }
+    if(actionStr.equals("removeMachineStation"))
+   {
+       TicketMachine tempTicketMachine = new TicketMachine();
+       tempTicketMachine.setId(machineId);
+       tempTicketMachine.setUuid(originalMachineUuid);
+       try{
+       machineDAO.deleteById(machineId);
+
+       tempTicketMachine.setStation(tempStation);
+
+       machineDAO.save(tempTicketMachine);
+
+       message = "Machine updated!";
+       }
+       catch(Exception ex)
+       {
+           errorMessage = "something went wrong";
+       }
+   }
 %>
 
 <html>
@@ -196,7 +207,7 @@
                 <input type="hidden" name="originalUuid" value="<%=originalMachineUuid%>">
                 <input type="hidden" name="TicketMachineId" value="<%=machineId%>">
                 <input type="hidden" name="action" value="updateMachineUuid">
-                <input type="hidden" name="stationName" value="stationNameStr">
+                <input type="hidden" name="stationName" value="<%=stationNameStr%>">
                 <button type="submit" >Update Ticket Machine UUID</button>
             </p>
         </form>
