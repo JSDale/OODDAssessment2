@@ -15,9 +15,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    // used to set html header autoload time. This automatically refreshes the page
-    // Set refresh, autoload time every 20 seconds
-    response.setIntHeader("Refresh", 10);
     String errorMessage = "";
     String message = "";
     
@@ -50,7 +47,15 @@
     if(actionStr.equals("updatePrice"))
     {
         String newPeakPrice = request.getParameter("newPeakPricing");
+        if(newPeakPrice == null || newPeakPrice.isEmpty())
+        {
+            newPeakPrice = "";
+        }       
         String newOffPeakPrice = request.getParameter("newOffPeakPricing");
+        if(newOffPeakPrice == null || newOffPeakPrice.isEmpty())
+        {
+            newOffPeakPrice = "";
+        }       
         double newPeakPriceDbl = -1;
         double newOffPeakPriceDbl = -1;
         
@@ -82,7 +87,7 @@
         {
             try
             {
-                PricingDetails pd = new PricingDetails();
+                PricingDetails pd = priceCalcDAO.getPricingDetails();
                 pd.setOffpeakPricePerZone(newOffPeakPriceDbl);
                 pd.setPeakPricePerZone(newPeakPriceDbl);
                 priceCalcDAO.savePricingDetails(pd);

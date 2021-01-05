@@ -9,6 +9,8 @@ package org.solent.com528.project.impl.rest;
  *
  * @author gallenc
  */
+import org.solent.com528.project.impl.web.VariableStorage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -22,6 +24,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.solent.com528.project.impl.dao.jaxb.PriceCalculatorDAOJaxbImpl;
 import org.solent.com528.project.impl.web.WebObjectFactory;
 import org.solent.com528.project.model.dao.PriceCalculatorDAO;
 import org.solent.com528.project.model.dao.StationDAO;
@@ -29,6 +32,7 @@ import org.solent.com528.project.model.dao.TicketMachineDAO;
 import org.solent.com528.project.model.dto.PriceBand;
 import org.solent.com528.project.model.dto.PricingDetails;
 import org.solent.com528.project.model.dto.Rate;
+import org.solent.com528.project.impl.web.VariableStorage;
 
 import org.solent.com528.project.model.dto.ReplyMessage;
 import org.solent.com528.project.model.dto.Station;
@@ -46,6 +50,9 @@ public class TicketMachineRestService {
     // SETS UP LOGGING 
     // note that log name will be org.solent.com528.factoryandfacade.impl.rest.TicketMachineRestService
     final static Logger LOG = LogManager.getLogger(TicketMachineRestService.class);
+    
+    final static String TMP_DIR = System.getProperty("java.io.tmpdir");
+    private String pricingDetailsFile = TMP_DIR + File.separator + "client" + File.separator + "pricingDetailsFile.xml";
 
     /**
      * this is a very simple rest test message which only returns a string
@@ -75,7 +82,20 @@ public class TicketMachineRestService {
 
             ServiceFacade serviceFacade = WebObjectFactory.getServiceFacade();
             StationDAO stationDAO = serviceFacade.getStationDAO();
-            PriceCalculatorDAO priceCalculatorDAO = serviceFacade.getPriceCalculatorDAO();
+            PriceCalculatorDAO priceCalculatorDAO = null;
+            if(VariableStorage.priceCalcDAO == null)
+            {
+                priceCalculatorDAO = serviceFacade.getPriceCalculatorDAO();
+                if (priceCalculatorDAO == null) {
+                    LOG.debug("creating new priceCalculatorDAO ");
+                    priceCalculatorDAO = new PriceCalculatorDAOJaxbImpl(pricingDetailsFile);
+                    VariableStorage.priceCalcDAO = priceCalculatorDAO;
+                }
+            }
+            else
+            {
+                priceCalculatorDAO = VariableStorage.priceCalcDAO;
+            }
             
             ReplyMessage replyMessage = new ReplyMessage();
             LOG.debug("/getTicketMachineConfig called  uuid=" + uuid);
@@ -93,35 +113,44 @@ public class TicketMachineRestService {
             int stationZone = station.getZone();
 
             // YOU WOULD GET THIS FROM THE DAO'S IN THE SERVICE FACADE            
-            PricingDetails pricingDetails = new PricingDetails();
-            PriceCalculatorDAO priceCalcDAO = serviceFacade.getPriceCalculatorDAO();
-            pricingDetails.setOffpeakPricePerZone(priceCalcDAO.getOffpeakPricePerZone());
-            pricingDetails.setPeakPricePerZone(priceCalcDAO.getPeakPricePerZone());
-            List<PriceBand> priceBandList = new ArrayList();
-            pricingDetails.setPriceBandList(priceBandList);
-
-            // adding 3 price bands
-            PriceBand priceBand1 = new PriceBand();
-            priceBand1.setRate(Rate.OFFPEAK);
-            priceBand1.setHour(0);
-            priceBand1.setMinutes(0);
-            priceBandList.add(priceBand1);
-
-            PriceBand priceBand2 = new PriceBand();
-            priceBand2.setRate(Rate.PEAK);
-            priceBand2.setHour(9);
-            priceBand2.setMinutes(0);
-            priceBandList.add(priceBand2);
+            PricingDetails pricingDetails = priceCalculatorDAO.getPricingDetails();
+            if(priceCalculatorDAO.getOffpeakPricePerZone() == 0 || priceCalculatorDAO.getPeakPricePerZone() == 0)
+            {
+                pricingDetails.setOffpeakPricePerZone(2.50);
+                pricingDetails.setPeakPricePerZone(5.00);
+            }
             
-            PriceBand priceBand3 = new PriceBand();
-            priceBand3.setRate(Rate.OFFPEAK);
-            priceBand3.setHour(11);
-            priceBand3.setMinutes(30);
-            priceBandList.add(priceBand3);
+            pricingDetails.setOffpeakPricePerZone(priceCalculatorDAO.getOffpeakPricePerZone());
+            pricingDetails.setPeakPricePerZone(priceCalculatorDAO.getPeakPricePerZone());
+            List<PriceBand> priceBandList = pricingDetails.getPriceBandList();
+            if(priceBandList.size() == 1)
+            {
+                priceBandList = new ArrayList();
+                 // adding 3 price bands
+                PriceBand priceBand1 = new PriceBand();
+                priceBand1.setRate(Rate.OFFPEAK);
+                priceBand1.setHour(0);
+                priceBand1.setMinutes(0);
+                priceBandList.add(priceBand1);
+
+                PriceBand priceBand2 = new PriceBand();
+                priceBand2.setRate(Rate.PEAK);
+                priceBand2.setHour(9);
+                priceBand2.setMinutes(0);
+                priceBandList.add(priceBand2);
+
+                PriceBand priceBand3 = new PriceBand();
+                priceBand3.setRate(Rate.OFFPEAK);
+                priceBand3.setHour(11);
+                priceBand3.setMinutes(30);
+                priceBandList.add(priceBand3);
+            }
+            pricingDetails.setPriceBandList(priceBandList);
 
             // STATION LIST
             
             List<Station> stationList = stationDAO.findAll();
+            String tempStationName = "";
             
 //            List<Station> stationList = new ArrayList();
 //            Station station = new Station();
