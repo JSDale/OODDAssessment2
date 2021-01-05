@@ -138,6 +138,32 @@ public class PriceCalculatorDAOJaxbImpl implements PriceCalculatorDAO {
         savePricingDetails(pd);
         save();
     }
+    
+    @Override
+    public PricingDetails loadPricingDetails()
+    {
+        File file = new File(pricingDetailsFile);
+        LOG.debug("loading pricingDetailsFile from " + file.getAbsolutePath());
+
+        if (!file.exists()) {
+            LOG.debug("pricingDetailsFile does not exist - creating new file ");
+            deleteAll(); // this initialises with at least 0:00 time zone
+        } else {
+            try {
+                // this contains a list of Jaxb annotated classes for the context to parse
+                // NOTE you must also have a jaxb.index or ObjectFactory in the same classpath
+                JAXBContext jaxbContext = JAXBContext.newInstance("org.solent.com528.project.model.dto");
+                Unmarshaller jaxbUnMarshaller = jaxbContext.createUnmarshaller();
+
+                PricingDetails pricingDetails = (PricingDetails) jaxbUnMarshaller.unmarshal(file);
+                return pricingDetails; 
+
+            } catch (JAXBException e) {
+                throw new RuntimeException("problem testing jaxb marshalling", e);
+            }
+        }
+        throw new RuntimeException("problem testing jaxb marshalling, PriceCalcDAOJaxbImpl 164");
+    }
 
     private void load() {
 

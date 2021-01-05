@@ -89,17 +89,13 @@
                 priceCalcDAO.savePricingDetails(pd);
                 message = "peak schedule saved";
             }
-            else
-            {
-                throw new Exception("couldn't delete schedule, check times are in 24 hour and valid");
-            }
             if(offPeakHour != -1 && offPeakHour >= 0 && offPeakHour <= 24 )
             {
-                Rate peakRate = Rate.OFFPEAK;
+                Rate offPeakRate = Rate.OFFPEAK;
                 PriceBand pb = new PriceBand();
                 pb.setHour(offPeakHour);
                 pb.setMinutes(offPeakMin);
-                pb.setRate(peakRate);
+                pb.setRate(offPeakRate);
                 pbList.add(pb);
                 pd.setPriceBandList(pbList);
                 priceCalcDAO.savePricingDetails(pd);
@@ -117,17 +113,28 @@
         {
             if(!newPeakTimeHStr.isEmpty())
             {
-                peakHour = Integer.parseInt(newPeakTimeHStr);
-                peakMin = Integer.parseInt(newPeakTimeMStr);
+                try
+                {
+                    peakHour = Integer.parseInt(newPeakTimeHStr);
+                    peakMin = Integer.parseInt(newPeakTimeMStr);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("couldn't add schedule, check times are in 24 hour and valid");
+                }          
             }
+            
             if(!newOffPeakTimeHStr.isEmpty())
             {
-                offPeakHour = Integer.parseInt(newOffPeakTimeHStr);
-                offPeakMin = Integer.parseInt(newOffPeakTimeMStr);
-            }
-             else
-            {
-                throw new Exception("couldn't add schedule, check times are in 24 hour and valid");
+                 try
+                {
+                    offPeakHour = Integer.parseInt(newOffPeakTimeHStr);
+                    offPeakMin = Integer.parseInt(newOffPeakTimeMStr);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("couldn't add schedule, check times are in 24 hour and valid");
+                }          
             }
         }
         catch(Exception ex)
@@ -138,6 +145,7 @@
         {
              if(peakHour != -1 && peakHour >= 0 && peakHour <= 24 )
             {
+            try{
                 Rate peakRate = Rate.PEAK;
                 PriceBand pb = new PriceBand();
                 pb.setHour(peakHour);
@@ -146,23 +154,26 @@
                 priceCalcDAO.deletePriceBand(pb);
                 message = "peak schedule deleted";
             }
-            else
-            {
-                throw new Exception("couldn't delete schedule, check times are in 24 hour and valid");
+            catch(Exception ex){
+                throw new Exception("couldn't add schedule, check times are in 24 hour and valid");
+            }
+                
             }
             if(offPeakHour != -1 && offPeakHour >= 0 && offPeakHour <= 24 )
             {
-                Rate offPeakRate = Rate.PEAK;
-                PriceBand pb = new PriceBand();
-                pb.setHour(offPeakHour);
-                pb.setMinutes(offPeakMin);
-                pb.setRate(offPeakRate);
-                priceCalcDAO.deletePriceBand(pb);
-                message = "peak schedule deleted";
-            }
-            else
-            {
-                throw new Exception("couldn't delete schedule, check times are in 24 hour and valid");
+                try{
+                    Rate offPeakRate = Rate.PEAK;
+                    PriceBand pb = new PriceBand();
+                    pb.setHour(offPeakHour);
+                    pb.setMinutes(offPeakMin);
+                    pb.setRate(offPeakRate);
+                    priceCalcDAO.deletePriceBand(pb);
+                    message = "peak schedule deleted";
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("couldn't add schedule, check times are in 24 hour and valid");
+                }           
             }
         }
         catch(Exception ex)

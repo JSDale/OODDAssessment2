@@ -29,4 +29,6 @@ public interface PriceCalculatorDAO {
 
     public void setPeakPricePerZone(Double peakPricePerZone);
     
+    public PricingDetails loadPricingDetails(); 
+    
 }

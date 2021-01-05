@@ -83,18 +83,18 @@ public class TicketMachineRestService {
             ServiceFacade serviceFacade = WebObjectFactory.getServiceFacade();
             StationDAO stationDAO = serviceFacade.getStationDAO();
             PriceCalculatorDAO priceCalculatorDAO = null;
-            if(VariableStorage.priceCalcDAO == null)
+            if(VariableStorage.getStoredPriceCalcDAO() == null)
             {
                 priceCalculatorDAO = serviceFacade.getPriceCalculatorDAO();
                 if (priceCalculatorDAO == null) {
                     LOG.debug("creating new priceCalculatorDAO ");
                     priceCalculatorDAO = new PriceCalculatorDAOJaxbImpl(pricingDetailsFile);
-                    VariableStorage.priceCalcDAO = priceCalculatorDAO;
+                    VariableStorage.setStoredPriceCalcDAO(priceCalculatorDAO);
                 }
             }
             else
             {
-                priceCalculatorDAO = VariableStorage.priceCalcDAO;
+                priceCalculatorDAO = VariableStorage.getStoredPriceCalcDAO();
             }
             
             ReplyMessage replyMessage = new ReplyMessage();
@@ -113,7 +113,8 @@ public class TicketMachineRestService {
             int stationZone = station.getZone();
 
             // YOU WOULD GET THIS FROM THE DAO'S IN THE SERVICE FACADE            
-            PricingDetails pricingDetails = priceCalculatorDAO.getPricingDetails();
+            //PricingDetails pricingDetails = priceCalculatorDAO.getPricingDetails();
+            PricingDetails pricingDetails = priceCalculatorDAO.loadPricingDetails();
             if(priceCalculatorDAO.getOffpeakPricePerZone() == 0 || priceCalculatorDAO.getPeakPricePerZone() == 0)
             {
                 pricingDetails.setOffpeakPricePerZone(2.50);
@@ -146,6 +147,7 @@ public class TicketMachineRestService {
                 priceBandList.add(priceBand3);
             }
             pricingDetails.setPriceBandList(priceBandList);
+            priceCalculatorDAO.savePricingDetails(pricingDetails);
 
             // STATION LIST
             

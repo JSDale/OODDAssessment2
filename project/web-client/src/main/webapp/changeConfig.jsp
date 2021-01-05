@@ -96,7 +96,7 @@
                     </td>
                 </tr>
             </form>
-            <form action="./index.jsp" method="post">
+            <form action="./index.html" method="post">
                 <tr>
                 <td><button type="submit" >Return to index</button></td>
                 </tr>

@@ -16,5 +16,14 @@ import org.solent.com528.project.model.dao.PriceCalculatorDAO;
  */
 public class VariableStorage {
     
-    public static PriceCalculatorDAO priceCalcDAO = null;
+    private static PriceCalculatorDAO storedPriceCalcDAO= null;
+    
+    public static void setStoredPriceCalcDAO(PriceCalculatorDAO storedPriceCalcDAO)
+    {
+        VariableStorage.storedPriceCalcDAO = storedPriceCalcDAO;
+    }
+    public static PriceCalculatorDAO getStoredPriceCalcDAO()
+    {
+        return VariableStorage.storedPriceCalcDAO;
+    }
 }
