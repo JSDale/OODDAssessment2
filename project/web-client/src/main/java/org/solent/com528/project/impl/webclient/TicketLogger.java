@@ -39,7 +39,7 @@ public class TicketLogger {
         String path = url.getPath();
         String[] pathArr = path.split("client/");
         path = pathArr[0];
-        path = path + "client/Logger/TicketLogger.txt";
+        path = path + "client/Logger/";
         File file = new File(path + "TicketLogger.txt");
         return file;
     }
