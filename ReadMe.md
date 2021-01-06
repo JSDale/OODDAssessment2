@@ -5,8 +5,10 @@ _this has only been tested on Windows 10_
 * Java 11 SDK
 * Tomcat Server 8.0
 * Netbean IDE version 12.0
+* Maven
 
 ## How to Run ##
+* Go to the project folder in the solution and open a power shell window and type "mvn clean install".
 * Once the prerequisites are installed on your machine, run netbeans.
 * Next, you need to assign the Tomcat server in netbeans by clikcing on services on the left.
 There should be an option to listed called servers, right click on that and select "add server".
